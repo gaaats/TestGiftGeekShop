@@ -91,7 +91,8 @@
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@anim/from_left"
-            app:popExitAnim="@anim/to_right" />
+            app:popExitAnim="@anim/to_right"
+            app:popUpTo="@id/startFragment" />
         <action
             android:id="@+id/action_question4Fragment_to_startFragment"
             app:destination="@id/startFragment"
@@ -116,6 +117,13 @@
         <action
             android:id="@+id/action_resultFragment_to_completeOrderFragment"
             app:destination="@id/completeOrderFragment" />
+        <action
+            android:id="@+id/action_resultFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/completeOrderFragment"
@@ -158,5 +166,16 @@
             app:destination="@id/startFragment"
             app:launchSingleTop="true"
             app:popUpTo="@id/startFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDetailsFragment"
+        android:name="com.example.testgiftgeekshop.ProductDetailsFragment"
+        android:label="fragment_product_details"
+        tools:layout="@layout/fragment_product_details" >
+        <action
+            android:id="@+id/action_productDetailsFragment_to_resultFragment"
+            app:destination="@id/resultFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/resultFragment" />
     </fragment>
 </navigation>

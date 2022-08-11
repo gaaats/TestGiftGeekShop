@@ -8,11 +8,17 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.testgiftgeekshop.databinding.FragmentQuestion4Binding
 import com.example.testgiftgeekshop.utils.ScreenModel
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.scopes.FragmentScoped
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
+@FragmentScoped
 class Question4Fragment : Fragment() {
 
     private val mainViewModel by activityViewModels<MainVievModel>()
@@ -57,6 +63,9 @@ class Question4Fragment : Fragment() {
                 btnConfirm.background = btnConfirmActive
                 btnConfirm.alpha = 1f
                 btnConfirm.setOnClickListener {
+                    lifecycleScope.launch {
+                        mainViewModel.loadList()
+                    }
                     navigateToNextQuestion()
                 }
             } else {

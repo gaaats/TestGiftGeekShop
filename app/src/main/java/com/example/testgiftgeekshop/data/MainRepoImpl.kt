@@ -61,7 +61,6 @@ class MainRepoImpl @Inject constructor(
                     filterByAvailable()
                 }
             }
-            // test it
             return ResourceVrap.Success(mainList)
         } catch (e: Exception) {
             return (ResourceVrap.Error(exception = e))

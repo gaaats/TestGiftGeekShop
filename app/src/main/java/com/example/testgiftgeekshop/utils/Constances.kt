@@ -5,6 +5,7 @@ object Constances {
     const val BASE_URL = "https://my.prom.ua/api/v1/"
     const val SPLASH_SCREEN_TIME: Long = 2000
     const val ONLY_IN_GIFT_BOX: Int = 100
+    const val KEY_PRODUCT_ID: String = "KEY_PRODUCT_ID"
     const val ONLY_WITHOUT_GIFT_BOX: Int = 500
     const val ITEM_NOT_DISPLAY: String = "not_on_display"
     const val ITEM_NOT_AVAILABLE: String = "not_available"

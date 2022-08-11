@@ -3,6 +3,7 @@ package com.example.testgiftgeekshop
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.testgiftgeekshop.adapters.ProductsListAdapter
 import com.example.testgiftgeekshop.databinding.FragmentResultBinding
 import com.example.testgiftgeekshop.utils.Constances
+import com.example.testgiftgeekshop.utils.SnackBarListener
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.scopes.FragmentScoped
 import kotlinx.coroutines.delay
@@ -42,16 +45,9 @@ class ResultFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        lifecycleScope.launch {
-            binding.scrollViewMain.visibility = View.INVISIBLE
-            binding.lottieAnimVaiting.visibility = View.VISIBLE
-            binding.tvPleaseVaitLoading.visibility = View.VISIBLE
-            delay(5000)
-            binding.scrollViewMain.visibility = View.VISIBLE
-            binding.lottieAnimVaiting.visibility = View.GONE
-            binding.tvPleaseVaitLoading.visibility = View.GONE
-        }
+//        Log.d("onViewCreated", "${mainViewModel.listProducts.value!!.data}")
 
+        startLoadingProgBar()
         iniLoadListProducts()
         initAdapterRecViev()
         observeProductList()
@@ -62,6 +58,18 @@ class ResultFragment : Fragment() {
         setOnClickListenerRestartBtn()
 
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    private fun startLoadingProgBar() {
+        lifecycleScope.launch {
+            binding.scrollViewMain.visibility = View.INVISIBLE
+            binding.lottieAnimVaiting.visibility = View.VISIBLE
+            binding.tvPleaseVaitLoading.visibility = View.VISIBLE
+            delay(5000)
+            binding.scrollViewMain.visibility = View.VISIBLE
+            binding.lottieAnimVaiting.visibility = View.GONE
+            binding.tvPleaseVaitLoading.visibility = View.GONE
+        }
     }
 
     private fun setOnClickListenerRestartBtn() {
@@ -92,13 +100,23 @@ class ResultFragment : Fragment() {
     }
 
     private fun iniLoadListProducts() {
-        lifecycleScope.launch {
-            mainViewModel.loadList()
-        }
+//        lifecycleScope.launch {
+//            mainViewModel.loadList()
+//        }
     }
 
     private fun initAdapterRecViev() {
         binding.recyclerView.adapter = productsAdapter
+
+        productsAdapter.setOnItemClickListener {
+
+            //done
+//            Snackbar.make(binding.root, "You pressed: $it element", Snackbar.LENGTH_SHORT).show()
+//            lifecycleScope.launch{
+//                mainViewModel.loadPressedSingleProduct(it)
+//            }
+            findNavController().navigate(R.id.action_resultFragment_to_productDetailsFragment)
+        }
     }
 
     override fun onDestroy() {

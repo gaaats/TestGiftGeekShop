@@ -8,22 +8,22 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.geekshopappbuy.domain.entitys.GeekProductUI
-import com.example.testgiftgeekshop.domain.usecases.FilterResultListByTitle
-import com.example.testgiftgeekshop.domain.usecases.GetAllProductsByGroupIds
-import com.example.testgiftgeekshop.domain.usecases.GetAllProductsByIDs
-import com.example.testgiftgeekshop.domain.usecases.SortByPrice
+import com.example.testgiftgeekshop.domain.usecases.*
 import com.example.testgiftgeekshop.utils.Constances
 import com.example.testgiftgeekshop.utils.ModelAnswer
 import com.example.testgiftgeekshop.utils.ResourceVrap
 import com.example.testgiftgeekshop.utils.ScreenModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
 class MainVievModel @Inject constructor(
     private val application: Application,
+    private val getProductInfo: GetProductInfo,
     private val getAllProductsByIDs: GetAllProductsByIDs,
     private val getAllProductsByGroupIds: GetAllProductsByGroupIds,
     private val sortByPrice: SortByPrice,
@@ -50,6 +50,10 @@ class MainVievModel @Inject constructor(
     private var _screenFourthState = MutableLiveData<ScreenModel>()
     val screenFourthState: LiveData<ScreenModel>
         get() = _screenFourthState
+
+    private var _singleProductOpened = MutableLiveData<ResourceVrap<GeekProductUI>>()
+    val singleProductOpened: LiveData<ResourceVrap<GeekProductUI>>
+        get() = _singleProductOpened
 
     private var _screenExternalMarvelState = MutableLiveData<ScreenModel>()
     val screenExternalMarvelState: LiveData<ScreenModel>
@@ -95,6 +99,14 @@ class MainVievModel @Inject constructor(
         initExternalMarvelScreenState()
     }
 
+    suspend fun loadPressedSingleProduct(productID: Int) {
+        withContext(Dispatchers.IO) {
+            _singleProductOpened.postValue(getProductInfo.execute(productID))
+        }
+        delay(1000)
+        Log.d("element", " ${_singleProductOpened.value!!.data!!.name}")
+    }
+
     //    fun checkParamsQuestion1(){
 //        val list = screenFirstState.value!!.returnActiveParams()
 //        val listParamsSearch = mutableListOf<Int>()
@@ -124,8 +136,6 @@ class MainVievModel @Inject constructor(
             it
         }
         Log.d("test_params", "max number is: ${filterListPrice.last()}")
-
-
         // title filter
         val filterTitleList = screenThirdState.value!!.returnActiveParams()
         Log.d("test_params", "title filter is: $filterTitleList")
@@ -141,8 +151,16 @@ class MainVievModel @Inject constructor(
 
     private fun initThirdScreenState() {
         _screenThirdState.value = ScreenModel(
-            ModelAnswer(application.getString(R.string.question_3_yes), false, listOf(Constances.ONLY_IN_GIFT_BOX)),
-            ModelAnswer(application.getString(R.string.question_3_no_thanks), false, listOf(Constances.ONLY_WITHOUT_GIFT_BOX)),
+            ModelAnswer(
+                application.getString(R.string.question_3_yes),
+                false,
+                listOf(Constances.ONLY_IN_GIFT_BOX)
+            ),
+            ModelAnswer(
+                application.getString(R.string.question_3_no_thanks),
+                false,
+                listOf(Constances.ONLY_WITHOUT_GIFT_BOX)
+            ),
             ModelAnswer(application.getString(R.string.question_3_both_variants), false),
         )
     }
@@ -183,16 +201,52 @@ class MainVievModel @Inject constructor(
 
     private fun initExternalMarvelScreenState() {
         _screenExternalMarvelState.value = ScreenModel(
-            ModelAnswer(application.getString(R.string.add_question_superman), false, listOf(99058288)),
-            ModelAnswer(application.getString(R.string.add_question_batman), false, listOf(99056624)),
+            ModelAnswer(
+                application.getString(R.string.add_question_superman),
+                false,
+                listOf(99058288)
+            ),
+            ModelAnswer(
+                application.getString(R.string.add_question_batman),
+                false,
+                listOf(99056624)
+            ),
             ModelAnswer(application.getString(R.string.add_question_loki), false, listOf(99055745)),
-            ModelAnswer(application.getString(R.string.add_question_spider_man), false, listOf(99058288)),
-            ModelAnswer(application.getString(R.string.add_question_iron_man), false, listOf(99041510)),
-            ModelAnswer(application.getString(R.string.add_question_harley_quinn), false, listOf(99033919)),
-            ModelAnswer(application.getString(R.string.add_question_deadpool), false, listOf(99988359)),
-            ModelAnswer(application.getString(R.string.add_question_wolverine), false, listOf(104574408)),
-            ModelAnswer(application.getString(R.string.add_question_winter_soldier), false, listOf(100339449)),
-            ModelAnswer(application.getString(R.string.add_question_marvel_all), false, listOf(99059554)),
+            ModelAnswer(
+                application.getString(R.string.add_question_spider_man),
+                false,
+                listOf(99058288)
+            ),
+            ModelAnswer(
+                application.getString(R.string.add_question_iron_man),
+                false,
+                listOf(99041510)
+            ),
+            ModelAnswer(
+                application.getString(R.string.add_question_harley_quinn),
+                false,
+                listOf(99033919)
+            ),
+            ModelAnswer(
+                application.getString(R.string.add_question_deadpool),
+                false,
+                listOf(99988359)
+            ),
+            ModelAnswer(
+                application.getString(R.string.add_question_wolverine),
+                false,
+                listOf(104574408)
+            ),
+            ModelAnswer(
+                application.getString(R.string.add_question_winter_soldier),
+                false,
+                listOf(100339449)
+            ),
+            ModelAnswer(
+                application.getString(R.string.add_question_marvel_all),
+                false,
+                listOf(99059554)
+            ),
         )
     }
 
@@ -218,7 +272,7 @@ class MainVievModel @Inject constructor(
         )
     }
 
-    suspend fun loadList() {
+    fun loadList() {
         checkParamsQuestion1()
 //        _listProducts.value = getAllProductsByGroupId.execute(98631438)
 //        filterListByNumber()

@@ -48,6 +48,10 @@ class MainActivity : AppCompatActivity() {
             initAlertDialogExit()
             return
         }
+        if (fragmentInstance is ResultFragment){
+            initAlertDialogExit()
+            return
+        }
         super.onBackPressed()
     }
 

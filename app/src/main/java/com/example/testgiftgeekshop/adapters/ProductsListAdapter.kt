@@ -20,7 +20,7 @@ class ProductsListAdapter @Inject constructor(
 ) :
     ListAdapter<GeekProductUI, ProductsRecVVievHolder>(ProductDiffUtill()) {
 
-//    private var onItemClickListener : ((groupId: Int) -> Unit)? = null
+    private var onItemClickListener : ((groupId: Int) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductsRecVVievHolder {
         LayoutInflater.from(parent.context)
@@ -46,13 +46,13 @@ class ProductsListAdapter @Inject constructor(
                     }
                 }
             }
-//            root.setOnClickListener {
-//                onItemClickListener?.invoke(currentItem.id)
-//            }
+            root.setOnClickListener {
+                onItemClickListener?.invoke(currentItem.id)
+            }
         }
     }
 
-//    fun setOnItemClickListener (listener: (groupId: Int)-> Unit){
-//        onItemClickListener = listener
-//    }
+    fun setOnItemClickListener (listener: (groupId: Int)-> Unit){
+        onItemClickListener = listener
+    }
 }
