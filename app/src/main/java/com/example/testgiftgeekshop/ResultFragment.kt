@@ -111,10 +111,10 @@ class ResultFragment : Fragment() {
         productsAdapter.setOnItemClickListener {
 
             //done
-//            Snackbar.make(binding.root, "You pressed: $it element", Snackbar.LENGTH_SHORT).show()
-//            lifecycleScope.launch{
-//                mainViewModel.loadPressedSingleProduct(it)
-//            }
+            Snackbar.make(binding.root, "You pressed: $it element", Snackbar.LENGTH_SHORT).show()
+            lifecycleScope.launch{
+                mainViewModel.loadPressedSingleProduct(it)
+            }
             findNavController().navigate(R.id.action_resultFragment_to_productDetailsFragment)
         }
     }

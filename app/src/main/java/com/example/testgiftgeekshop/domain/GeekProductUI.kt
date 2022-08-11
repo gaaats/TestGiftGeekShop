@@ -1,5 +1,8 @@
 package com.example.geekshopappbuy.domain.entitys
 
+import com.example.geekshopappbuy.data.entity.products.Image
+import com.example.testgiftgeekshop.domain.ImageUI
+
 data class GeekProductUI(
     val id: Int,
     val name: String?,
@@ -11,5 +14,5 @@ data class GeekProductUI(
     val mainImage: String,
     val status: String,
     val presence: String,
-    val images: List<String>
+    val images: List<ImageUI>
 )
