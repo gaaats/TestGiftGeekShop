@@ -46,6 +46,7 @@ class ProductDetailsFragment : Fragment() {
                     Log.d("image_test", "images: ${it.data?.images}")
                     binding.viewPager.adapter = pagerAdapter
                     pagerAdapter.submitList(it.data!!.images)
+                    binding.tvName.text = it.data.name
                 }
                 is ResourceVrap.Loading -> {
 

@@ -4,6 +4,6 @@ import com.google.gson.annotations.SerializedName
 
 
 data class ImageUI(
-    val id: Long,
+    val id: Any,
     val url: String?
 )

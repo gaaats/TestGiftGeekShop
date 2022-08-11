@@ -7,13 +7,64 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ProductDetailsFragment">
 
+   <TextView
+       android:id="@+id/tv_name"
+       android:layout_width="0dp"
+       android:layout_height="0dp"
+       android:fontFamily="@font/montserrat_black"
+       android:gravity="center"
+       android:lines="2"
+       android:autoSizeTextType="uniform"
+       android:ellipsize="end"
+       android:maxLines="2"
+       android:textColor="@color/black"
+       app:layout_constraintEnd_toEndOf="@id/guideline_vert_90"
+       app:layout_constraintStart_toStartOf="@id/guideline_vert_10"
+       app:layout_constraintTop_toTopOf="@id/guideline_hor_10"
+       app:layout_constraintBottom_toBottomOf="@id/guideline_hor_17"
+       tools:text="Magic robe" />
+
+   <androidx.constraintlayout.widget.Guideline
+       android:id="@+id/guideline_vert_10"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       app:layout_constraintGuide_percent="0.10" />
+
+   <androidx.constraintlayout.widget.Guideline
+       android:id="@+id/guideline_vert_90"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       app:layout_constraintGuide_percent="0.90" />
+
+   <androidx.constraintlayout.widget.Guideline
+       android:id="@+id/guideline_hor_20"
+       style="@style/guideline_simple_style_horizontal"
+       app:layout_constraintGuide_percent="0.20" />
+
+   <androidx.constraintlayout.widget.Guideline
+       android:id="@+id/guideline_hor_17"
+       style="@style/guideline_simple_style_horizontal"
+       app:layout_constraintGuide_percent="0.17" />
+
+   <androidx.constraintlayout.widget.Guideline
+       android:id="@+id/guideline_hor_10"
+       style="@style/guideline_simple_style_horizontal"
+       app:layout_constraintGuide_percent="0.10" />
+
+   <androidx.constraintlayout.widget.Guideline
+       android:id="@+id/guideline_hor_60"
+       style="@style/guideline_simple_style_horizontal"
+       app:layout_constraintGuide_percent="0.60" />
+
    <androidx.viewpager2.widget.ViewPager2
        android:id="@+id/viewPager"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       app:layout_constraintBottom_toBottomOf="parent"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toTopOf="parent" />
+       android:layout_width="0dp"
+       android:layout_height="0dp"
+       app:layout_constraintBottom_toBottomOf="@id/guideline_hor_60"
+       app:layout_constraintEnd_toEndOf="@id/guideline_vert_90"
+       app:layout_constraintStart_toStartOf="@id/guideline_vert_10"
+       app:layout_constraintTop_toTopOf="@id/guideline_hor_20" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

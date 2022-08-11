@@ -18,36 +18,48 @@ object Mapper {
 //            it?: throw RuntimeException("there is Uri inside Image item")
 //        } ?: throw RuntimeException("there is empty List<Images>")
 
+
+        //this 2 fun
         fun convertToUiImage(image: Image?): ImageUI {
             return ImageUI(
-                image?.id.toString().toLong(),
-                image?.url?.replace("w200_h200", "w700_h700")
+                image?.id ?:throw RuntimeException("id or image is empty "),
+                image.url?.replace("w200_h200", "w700_h700")
                     ?: throw RuntimeException("url is empty ")
             )
         }
-
-        fun convertImagesToNormal(): List<ImageUI> {
-//            Log.d("image_test", "i am in Mapper")
-//            Log.d("image_test", "list images ${promModel.images}")
-//            val temp = mutableListOf<Image>()
-//            for (image in promModel.images
-//                ?: throw RuntimeException("there is empty List<Images>")) {
-//                val tempImage = image?.copy() ?: throw RuntimeException("image is empty ")
-//                tempImage.url?.replace("w100_h100", "w700_h700")
-//                tempImage.thumbnailUrl?.replace("w100_h100", "w700_h700")
-//                tempImage.thumbnailUrl?.replace("w100_h100", "w700_h700")
-//                temp.add(tempImage)
-//            }
-//            Log.d("image_test", "list images ${temp}")
-//            return temp
-
+        fun convertTestTest(): List<ImageUI> {
             val tempList = mutableListOf<ImageUI>()
             for (image in promModel.images
                 ?: throw RuntimeException("there is empty List<Images>")) {
                 val res = convertToUiImage(image)
                 tempList.add(res)
             }
+            Log.d("image_test", "tempList ${tempList}")
             return tempList
+        }
+
+        fun convertImagesToNormal(): List<Image> {
+            Log.d("image_test", "i am in Mapper")
+            Log.d("image_test", "list images ${promModel.images}")
+            val temp = mutableListOf<Image>()
+            for (image in promModel.images
+                ?: throw RuntimeException("there is empty List<Images>")) {
+                val tempImage = image?.copy() ?: throw RuntimeException("image is empty ")
+                tempImage.url?.replace("w100_h100", "w700_h700")
+                tempImage.thumbnailUrl?.replace("w100_h100", "w700_h700")
+                tempImage.thumbnailUrl?.replace("w100_h100", "w700_h700")
+                temp.add(tempImage)
+            }
+            Log.d("image_test", "list images ${temp}")
+            return temp
+
+//            val tempList = mutableListOf<ImageUI>()
+//            for (image in promModel.images
+//                ?: throw RuntimeException("there is empty List<Images>")) {
+//                val res = convertToUiImage(image)
+//                tempList.add(res)
+//            }
+//            return tempList
         }
 
 
@@ -63,7 +75,7 @@ object Mapper {
                 ?: throw RuntimeException("there is no description"),
             mainImage = promModel.mainImage?.replace("w200_h200", "w500_h500")
                 ?: throw RuntimeException("there is no mainImage"),
-            images = convertImagesToNormal(),
+            images = convertTestTest(),
             status = promModel.status ?: throw RuntimeException("there is no status"),
             presence = promModel.presence ?: throw RuntimeException("there is no presence"),
         )
