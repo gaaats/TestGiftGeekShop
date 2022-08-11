@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">Geek Helper</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="helper">Якщо жоден із варінатів Вам не підходить, оберіть, будь ласка, варіант, який найбільше підходить для Вашого випадка</string>
+    <string name="dont_knov_vhat_choose">не знаєш що саме обрати ?</string>
+    <string name="we_have_an_idea">we have an idea</string>
+    <string name="text_idea">у нас є ідея</string>
+    <string name="go_to_fast_test">пройти тест ►►</string>
+    <string name="loading">Loading...</string>
+    <string name="managers_fighting">Наші менеджери б\'ються за можливість відповісти вам. Бої триватимуть ще деякий час. Переможець відразу зв\'яжеться з Вами</string>
+    <string name="for_being_awesome_">for being awesome, we hope you enjoy your purchase 🖤</string>
+    <string name="question_1_for_me">Для себе</string>
+    <string name="question_1_for_friend">Для друга / подруги</string>
+    <string name="question_1_for_love">Для коханої людини</string>
+    <string name="question_1_for_parents">Для батьків</string>
+    <string name="question_2_harry_potter">Harry Potter</string>
+    <string name="question_2_marvel_dc">Marvel / Dc</string>
+    <string name="question_2_squid_game">Гра в кальмара</string>
+    <string name="question_2_game_thrones">Гра Престолів</string>
+    <string name="question_2_star_vars">star Wars</string>
+    <string name="question_3_yes">Так</string>
+    <string name="question_3_no_thanks">Ні, не потрібно</string>
+    <string name="question_3_both_variants">Розгляну обидва варіанти</string>
+    <string name="created_by_geekshop_ukaine">© Created by geekshop_ukaine</string>
+    <string name="question_4_200">до 200 грн</string>
+    <string name="question_4_201_500">201 грн - 500 грн</string>
+    <string name="question_4_501_999">501 грн - 999 грн</string>
+    <string name="question_4_1000">1000+ грн</string>
+    <string name="confirm_btn">confirm</string>
+    <string name="go_to_site"><u>Ви також можете самостійно сформувати замолвення на нашому сайті</u></string>
+    <string name="start_test_again">↓↓ пройти тест ще раз ↓↓</string>
+    <string name="add_quest_marvel_dc">* Для Marvel / dc У НАС Є ДОДАТКОВЕ ЗАПИТАННЯ?</string>
+    <string name="add_question_superman">superman</string>
+    <string name="add_question_batman">batman</string>
+    <string name="add_question_loki">loki</string>
+    <string name="add_question_spider_man">spider-man</string>
+    <string name="add_question_iron_man">iron man</string>
+    <string name="add_question_harley_quinn">harley quinn</string>
+    <string name="add_question_deadpool">deadpool</string>
+    <string name="add_question_winter_soldier">Winter Soldier</string>
+    <string name="add_question_marvel_all">інше Marvel</string>
+    <string name="add_question_wolverine">Wolverine</string>
+    <string name="citata_dumbldor">Майте терпіння... \n <u>©Альбус Дамблдор</u></string>
+</resources>
