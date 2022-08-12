@@ -28,7 +28,7 @@
     <string name="question_4_501_999">501 грн - 999 грн</string>
     <string name="question_4_1000">1000+ грн</string>
     <string name="confirm_btn">confirm</string>
-    <string name="go_to_site"><u>Ви також можете самостійно сформувати замолвення на нашому сайті</u></string>
+    <string name="go_to_site"><u>Сформувати замолвення самостійно на нашому сайті</u></string>
     <string name="start_test_again">↓↓ пройти тест ще раз ↓↓</string>
     <string name="add_quest_marvel_dc">* Для Marvel / dc У НАС Є ДОДАТКОВЕ ЗАПИТАННЯ?</string>
     <string name="add_question_superman">superman</string>

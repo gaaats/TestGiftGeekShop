@@ -62,11 +62,11 @@ class ResultFragment : Fragment() {
 
     private fun startLoadingProgBar() {
         lifecycleScope.launch {
-            binding.scrollViewMain.visibility = View.INVISIBLE
+            binding.resScrnMainGroup.visibility = View.INVISIBLE
             binding.lottieAnimVaiting.visibility = View.VISIBLE
             binding.tvPleaseVaitLoading.visibility = View.VISIBLE
             delay(2000)
-            binding.scrollViewMain.visibility = View.VISIBLE
+            binding.resScrnMainGroup.visibility = View.VISIBLE
             binding.lottieAnimVaiting.visibility = View.GONE
             binding.tvPleaseVaitLoading.visibility = View.GONE
         }
