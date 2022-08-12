@@ -65,7 +65,7 @@ class ResultFragment : Fragment() {
             binding.scrollViewMain.visibility = View.INVISIBLE
             binding.lottieAnimVaiting.visibility = View.VISIBLE
             binding.tvPleaseVaitLoading.visibility = View.VISIBLE
-            delay(5000)
+            delay(2000)
             binding.scrollViewMain.visibility = View.VISIBLE
             binding.lottieAnimVaiting.visibility = View.GONE
             binding.tvPleaseVaitLoading.visibility = View.GONE

@@ -107,4 +107,11 @@ dependencies {
     //lottie
     implementation 'com.airbnb.android:lottie:5.2.0'
 
+    //circleindicator - pager
+    implementation 'me.relex:circleindicator:2.1.6'
+
+// https://mvnrepository.com/artifact/org.sufficientlysecure/html-textview
+//    implementation("org.sufficientlysecure:html-textview:4.0")
+
+
 }

@@ -58,9 +58,12 @@ class MainRepoImpl @Inject constructor(
 
                 Mapper.mapGeekResponseProductListToUIList(result).also { list ->
                     mainList.addAll(list)
-                    filterByAvailable()
+
+                    //todo: add it after all elements added
+//                    filterByAvailable()
                 }
             }
+            filterByAvailable()
             return ResourceVrap.Success(mainList)
         } catch (e: Exception) {
             return (ResourceVrap.Error(exception = e))

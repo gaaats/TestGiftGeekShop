@@ -1,70 +1,199 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/dark_green_1"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bkg_custom_grad_lin_1"
     tools:context=".ProductDetailsFragment">
 
-   <TextView
-       android:id="@+id/tv_name"
-       android:layout_width="0dp"
-       android:layout_height="0dp"
-       android:fontFamily="@font/montserrat_black"
-       android:gravity="center"
-       android:lines="2"
-       android:autoSizeTextType="uniform"
-       android:ellipsize="end"
-       android:maxLines="2"
-       android:textColor="@color/black"
-       app:layout_constraintEnd_toEndOf="@id/guideline_vert_90"
-       app:layout_constraintStart_toStartOf="@id/guideline_vert_10"
-       app:layout_constraintTop_toTopOf="@id/guideline_hor_10"
-       app:layout_constraintBottom_toBottomOf="@id/guideline_hor_17"
-       tools:text="Magic robe" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vert_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
 
-   <androidx.constraintlayout.widget.Guideline
-       android:id="@+id/guideline_vert_10"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:orientation="vertical"
-       app:layout_constraintGuide_percent="0.10" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vert_90"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
 
-   <androidx.constraintlayout.widget.Guideline
-       android:id="@+id/guideline_vert_90"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:orientation="vertical"
-       app:layout_constraintGuide_percent="0.90" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vert_80"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.86" />
 
-   <androidx.constraintlayout.widget.Guideline
-       android:id="@+id/guideline_hor_20"
-       style="@style/guideline_simple_style_horizontal"
-       app:layout_constraintGuide_percent="0.20" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_hor_12"
+        style="@style/guideline_simple_style_horizontal"
+        app:layout_constraintGuide_percent="0.12" />
 
-   <androidx.constraintlayout.widget.Guideline
-       android:id="@+id/guideline_hor_17"
-       style="@style/guideline_simple_style_horizontal"
-       app:layout_constraintGuide_percent="0.17" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_hor_05"
+        style="@style/guideline_simple_style_horizontal"
+        app:layout_constraintGuide_percent="0.05" />
 
-   <androidx.constraintlayout.widget.Guideline
-       android:id="@+id/guideline_hor_10"
-       style="@style/guideline_simple_style_horizontal"
-       app:layout_constraintGuide_percent="0.10" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_hor_15"
+        style="@style/guideline_simple_style_horizontal"
+        app:layout_constraintGuide_percent="0.15" />
 
-   <androidx.constraintlayout.widget.Guideline
-       android:id="@+id/guideline_hor_60"
-       style="@style/guideline_simple_style_horizontal"
-       app:layout_constraintGuide_percent="0.60" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_hor_95"
+        style="@style/guideline_simple_style_horizontal"
+        app:layout_constraintGuide_percent="0.95" />
 
-   <androidx.viewpager2.widget.ViewPager2
-       android:id="@+id/viewPager"
-       android:layout_width="0dp"
-       android:layout_height="0dp"
-       app:layout_constraintBottom_toBottomOf="@id/guideline_hor_60"
-       app:layout_constraintEnd_toEndOf="@id/guideline_vert_90"
-       app:layout_constraintStart_toStartOf="@id/guideline_vert_10"
-       app:layout_constraintTop_toTopOf="@id/guideline_hor_20" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_hor_63"
+        style="@style/guideline_simple_style_horizontal"
+        app:layout_constraintGuide_percent="0.63" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_hor_55"
+        style="@style/guideline_simple_style_horizontal"
+        app:layout_constraintGuide_percent="0.55" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_hor_57"
+        style="@style/guideline_simple_style_horizontal"
+        app:layout_constraintGuide_percent="0.57" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_hor_01"
+        style="@style/guideline_simple_style_horizontal"
+        app:layout_constraintGuide_percent="0.01" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_anim_added_to_cart"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:elevation="1dp"
+        app:layout_constraintBottom_toBottomOf="@id/viewPager"
+        app:layout_constraintDimensionRatio="1,1"
+        app:layout_constraintEnd_toEndOf="@id/viewPager"
+        app:layout_constraintStart_toStartOf="@id/viewPager"
+        app:layout_constraintTop_toTopOf="@id/viewPager"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true" />
+
+    <me.relex.circleindicator.CircleIndicator3
+        android:id="@+id/indicator_dot"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_hor_15"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vert_90"
+        app:layout_constraintStart_toStartOf="@id/guideline_vert_10"
+        app:layout_constraintTop_toTopOf="@id/guideline_hor_12" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_hor_55"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vert_90"
+        app:layout_constraintStart_toStartOf="@id/guideline_vert_10"
+        app:layout_constraintTop_toTopOf="@id/guideline_hor_15" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_add_to_basket"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeTextType="uniform"
+        android:background="@drawable/tv_custom"
+        android:fontFamily="@font/montserrat_black"
+        android:lines="1"
+        android:maxLines="1"
+        android:paddingStart="45dp"
+        android:paddingEnd="45dp"
+        android:text="додати до кошику"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_hor_63"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vert_90"
+        app:layout_constraintStart_toStartOf="@id/guideline_vert_10"
+        app:layout_constraintTop_toTopOf="@id/guideline_hor_57" />
+
+    <TextView
+        android:id="@+id/tv_created_by"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:text="@string/created_by_geekshop_ukaine"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_desc"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:autoSizeTextType="uniform"
+        android:ellipsize="end"
+        android:fontFamily="@font/jost_variable"
+        android:gravity="start"
+        android:lines="15"
+        android:maxLines="15"
+        android:textColor="@color/almost_black"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_hor_95"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vert_90"
+        app:layout_constraintStart_toStartOf="@id/guideline_vert_10"
+        app:layout_constraintTop_toTopOf="@id/guideline_hor_63"
+        tools:text="Галстук факультета Гриффиндор исполнен в цветах факультета (красный/золотой) без эмблемы. \nРазмер один универсальный, подойдет на любой возраст, приятный на ощупь, имеет красивый атласный перелив. Длина: 142 см, ширина: 4-6,5 см, длинна галстука регулируется. \nВ наличии так же: мантии, волшебные палочки, подвески, браслеты, очки, шарфики, шапки, стикеры, сладости и многое другое. \nВ нашем инстаграме geekshop_ukraine вы можете посмотреть все наши товары, у нас более 500 положительных отзывов в инстаграм.Часто задаваемые вопросы (FAQ). Могу ли я сам собрать бокс из того, что мне нравится?Да, конечно. Вы можете: 1. сами составить бокс на свое желание из любых товаров; 2. выбрать из уже готовых боксов (инстаграм geekshop_ukraine или каталог магазина на Prom.ua); 3. купить отдельные товары без бокса. Всегда Ваш, Geekshop." />
+
+
+    <ImageView
+        android:id="@+id/btn_img_exit"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_baseline_close_24"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_hor_05"
+        app:layout_constraintDimensionRatio="1,1"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vert_90"
+        app:layout_constraintTop_toTopOf="@id/guideline_hor_01" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeTextType="uniform"
+        android:ellipsize="end"
+        android:fontFamily="@font/montserrat_black"
+        android:gravity="center"
+        android:lines="2"
+        android:maxLines="2"
+        android:textColor="@color/almost_black"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_hor_12"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vert_90"
+        app:layout_constraintStart_toStartOf="@id/guideline_vert_10"
+        app:layout_constraintTop_toTopOf="@id/guideline_hor_05"
+        tools:text="Magic robe" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/main_group"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="tv_name, viewPager, btn_add_to_basket, tv_desc, tv_created_by" />
+
+   <com.airbnb.lottie.LottieAnimationView
+       android:id="@+id/lottie_anim_vaiting"
+       android:layout_width="270dp"
+       android:layout_height="280dp"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:lottie_autoPlay="true"
+       app:lottie_loop="true"
+       app:lottie_rawRes="@raw/lottie_anim_panda"
+       tools:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
