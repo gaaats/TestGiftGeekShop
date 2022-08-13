@@ -115,15 +115,19 @@
             app:launchSingleTop="true"
             app:popUpTo="@id/startFragment" />
         <action
-            android:id="@+id/action_resultFragment_to_completeOrderFragment"
-            app:destination="@id/completeOrderFragment" />
-        <action
             android:id="@+id/action_resultFragment_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_resultFragment_to_shopCartFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"
+            app:destination="@id/shopCartFragment" />
     </fragment>
     <fragment
         android:id="@+id/completeOrderFragment"
@@ -175,7 +179,24 @@
         <action
             android:id="@+id/action_productDetailsFragment_to_resultFragment"
             app:destination="@id/resultFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
             app:launchSingleTop="true"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
             app:popUpTo="@id/resultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/shopCartFragment"
+        android:name="com.example.testgiftgeekshop.ShopCartFragment"
+        android:label="fragment_shop_cart"
+        tools:layout="@layout/fragment_shop_cart" >
+        <action
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"
+            android:id="@+id/action_shopCartFragment_to_completeOrderFragment"
+            app:destination="@id/completeOrderFragment" />
     </fragment>
 </navigation>

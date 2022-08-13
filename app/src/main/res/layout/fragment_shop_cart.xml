@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bkg_custom_grad_lin_1"
+    tools:context=".ShopCartFragment">
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_hor_10"
+        style="@style/guideline_simple_style_horizontal"
+        app:layout_constraintGuide_percent="0.10" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_hor_98"
+        style="@style/guideline_simple_style_horizontal"
+        app:layout_constraintGuide_percent="0.98" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_hor_02"
+        style="@style/guideline_simple_style_horizontal"
+        app:layout_constraintGuide_percent="0.02" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_hor_90"
+        style="@style/guideline_simple_style_horizontal"
+        app:layout_constraintGuide_percent="0.90" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_hor_70"
+        style="@style/guideline_simple_style_horizontal"
+        app:layout_constraintGuide_percent="0.70" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_hor_78"
+        style="@style/guideline_simple_style_horizontal"
+        app:layout_constraintGuide_percent="0.78" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_hor_81"
+        style="@style/guideline_simple_style_horizontal"
+        app:layout_constraintGuide_percent="0.81" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_hor_06"
+        style="@style/guideline_simple_style_horizontal"
+        app:layout_constraintGuide_percent="0.06" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_hor_75"
+        style="@style/guideline_simple_style_horizontal"
+        app:layout_constraintGuide_percent="0.75" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_hor_87"
+        style="@style/guideline_simple_style_horizontal"
+        app:layout_constraintGuide_percent="0.87" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vert_15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vert_78"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.78" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vert_02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.02" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vert_98"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.98" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vert_85"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.85" />
+
+    <TextView
+        android:id="@+id/tv_total_sum_title"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeTextType="uniform"
+        android:layout_gravity="center"
+        android:layout_weight="7"
+        android:textAllCaps="true"
+        android:padding="12dp"
+        android:fontFamily="@font/montserrat_black"
+        android:gravity="center"
+        android:text="Моя корзинка"
+        app:layout_constraintStart_toStartOf="@id/guideline_vert_15"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vert_78"
+        app:layout_constraintTop_toTopOf="@id/guideline_hor_02"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_hor_10"
+        android:textColor="@color/almost_black" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/img_shop_cart"
+        app:layout_constraintStart_toStartOf="@id/guideline_vert_78"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vert_98"
+        app:layout_constraintTop_toTopOf="@id/guideline_hor_02"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_hor_06"
+        android:src="@drawable/ic_baseline_shopping_cart_24"/>
+
+    <TextView
+        android:id="@+id/tv_total_sum_count"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeTextType="uniform"
+        android:fontFamily="@font/montserrat_black"
+        android:gravity="center"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_hor_10"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vert_98"
+        app:layout_constraintStart_toStartOf="@id/guideline_vert_78"
+        app:layout_constraintTop_toTopOf="@id/guideline_hor_06"
+        tools:text="1000$" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/lin_for_rev_v"
+        app:layout_constraintStart_toStartOf="@id/guideline_vert_02"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vert_98"
+        app:layout_constraintTop_toTopOf="@id/guideline_hor_10"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_hor_87">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_shop_cart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/single_item_shop_cart" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_confirm_order"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:autoSizeTextType="uniform"
+        android:background="@drawable/tv_custom"
+        android:fontFamily="@font/montserrat_black"
+        android:lines="1"
+        app:layout_constraintStart_toStartOf="@id/guideline_vert_15"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vert_85"
+        app:layout_constraintTop_toTopOf="@id/guideline_hor_90"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_hor_98"
+        android:maxLines="1"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="замовлення підтверджую"
+        android:textAllCaps="true"
+        android:textColor="@color/white" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_empty_shop_cart"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        app:lottie_rawRes="@raw/lottie_empy_shop_cart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1,1"
+        app:lottie_autoPlay="false"
+        android:elevation="1dp"
+        android:visibility="gone"
+        app:lottie_loop="true"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

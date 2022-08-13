@@ -15,7 +15,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.testgiftgeekshop.adapters.ProductsListAdapter
 import com.example.testgiftgeekshop.databinding.FragmentResultBinding
+import com.example.testgiftgeekshop.presentation.ShopCartViewModel
 import com.example.testgiftgeekshop.utils.Constances
+import com.example.testgiftgeekshop.utils.ResourceVrap
 import com.example.testgiftgeekshop.utils.SnackBarListener
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,6 +34,7 @@ class ResultFragment : Fragment() {
     @Inject
     lateinit var productsAdapter: ProductsListAdapter
     private val mainViewModel by activityViewModels<MainVievModel>()
+    private val shopCartViewModel by activityViewModels<ShopCartViewModel>()
     private var _binding: FragmentResultBinding? = null
     private val binding get() = _binding ?: throw RuntimeException("ActivityMainBinding = null")
 
@@ -44,6 +47,11 @@ class ResultFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+
+        shopCartViewModel.totalSum.observe(viewLifecycleOwner) {
+            binding.tvTotalSumCount.text = it.toString()
+        }
 
 //        Log.d("onViewCreated", "${mainViewModel.listProducts.value!!.data}")
 
@@ -89,7 +97,7 @@ class ResultFragment : Fragment() {
 
     private fun setOnClickNavigateToCompleteOrderFragment() {
         binding.btnConfirmOrder.setOnClickListener {
-            findNavController().navigate(R.id.action_resultFragment_to_completeOrderFragment)
+            findNavController().navigate(R.id.action_resultFragment_to_shopCartFragment)
         }
     }
 
@@ -107,15 +115,26 @@ class ResultFragment : Fragment() {
 
     private fun initAdapterRecViev() {
         binding.recyclerView.adapter = productsAdapter
-
         productsAdapter.setOnItemClickListener {
-
             //done
             Snackbar.make(binding.root, "You pressed: $it element", Snackbar.LENGTH_SHORT).show()
-            lifecycleScope.launch{
+            lifecycleScope.launch {
                 mainViewModel.loadPressedSingleProduct(it)
             }
             findNavController().navigate(R.id.action_resultFragment_to_productDetailsFragment)
+        }
+
+        // on btn add to shop cart listener
+        productsAdapter.setOnItemAddToCartClickListener {
+            Snackbar.make(binding.root, "Ви додали до корзини: ${it.name}", Snackbar.LENGTH_SHORT).show()
+            lifecycleScope.launch {
+                binding.lottieAnimAddedToCart.visibility = View.VISIBLE
+                binding.lottieAnimAddedToCart.playAnimation()
+                delay(1800)
+                binding.lottieAnimAddedToCart.visibility = View.GONE
+                binding.lottieAnimAddedToCart.pauseAnimation()
+            }
+            shopCartViewModel.addToShopCart(it)
         }
     }
 
@@ -152,5 +171,4 @@ class ResultFragment : Fragment() {
             .create()
             .show()
     }
-
 }

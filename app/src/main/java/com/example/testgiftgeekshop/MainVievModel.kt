@@ -64,25 +64,6 @@ class MainVievModel @Inject constructor(
         application.getString(R.string.question_2_squid_game) to 101743532
     )
 
-    //id товаров валентинок  1560970884  1560994052  1561009067
-
-    // папа и мама група 103894435
-
-
-    // бокси гарри 98631385
-    // шарфики апки перчатки 98631214
-    //галстуки носочки 98631330
-    // стикери наклейик 98631332
-    // сладости гарри 98631374
-
-    // палочка гарри 1444898799
-    //1446238944
-    //1446245094
-    //1446247840
-    //1446252142
-    //1446255345
-
-
     //for future
 //    private var _statusMessage  = MutableLiveData<SnackBarListener<String>>()
 //    val statusMessage: LiveData<SnackBarListener<String>>
@@ -350,10 +331,6 @@ class MainVievModel @Inject constructor(
         initExternalMarvelScreenState()
         initThirdScreenState()
         initFourthScreenState()
-    }
-
-    suspend fun loadAllGoodsHarryPotter() {
-
     }
 
     // for future

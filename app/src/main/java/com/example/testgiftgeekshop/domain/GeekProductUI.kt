@@ -14,5 +14,14 @@ data class GeekProductUI(
     val mainImage: String,
     val status: String,
     val presence: String,
-    val images: List<ImageUI>
-)
+    val images: List<ImageUI>,
+    var isElementInShopList: Boolean = false,
+    var countInShopList: Int = 1,
+    var sumInShopList: Int = countInShopList * price,
+) {
+    val priceForDisplay
+        get() = "$price₴"
+
+    val sumForDisplay
+        get() = "$sumInShopList₴"
+}

@@ -20,7 +20,8 @@ class ProductsListAdapter @Inject constructor(
 ) :
     ListAdapter<GeekProductUI, ProductsRecVVievHolder>(ProductDiffUtill()) {
 
-    private var onItemClickListener : ((groupId: Int) -> Unit)? = null
+    private var onItemClickListener: ((groupId: Int) -> Unit)? = null
+    private var onItemAddToCartClickListener: ((singleProduct: GeekProductUI) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductsRecVVievHolder {
         LayoutInflater.from(parent.context)
@@ -46,13 +47,20 @@ class ProductsListAdapter @Inject constructor(
                     }
                 }
             }
-            root.setOnClickListener {
+            btnAddToShopCart.setOnClickListener {
+                onItemAddToCartClickListener?.invoke(currentItem)
+            }
+            imgPhoto.setOnClickListener {
                 onItemClickListener?.invoke(currentItem.id)
             }
         }
     }
 
-    fun setOnItemClickListener (listener: (groupId: Int)-> Unit){
+    fun setOnItemClickListener(listener: (groupId: Int) -> Unit) {
         onItemClickListener = listener
+    }
+
+    fun setOnItemAddToCartClickListener(listener: (singleProduct: GeekProductUI) -> Unit) {
+        onItemAddToCartClickListener = listener
     }
 }

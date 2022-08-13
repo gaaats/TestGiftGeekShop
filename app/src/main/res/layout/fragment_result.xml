@@ -8,6 +8,22 @@
     android:background="@drawable/bkg_custom_grad_lin_1"
     tools:context=".ResultFragment">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_anim_added_to_cart"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        app:lottie_rawRes="@raw/lottie_anim_added_to_cart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1,1"
+        app:lottie_autoPlay="false"
+        android:elevation="1dp"
+        android:visibility="gone"
+        app:lottie_loop="false"/>
+<!--        android:elevation="1dp"-->
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_hor_20"
         style="@style/guideline_simple_style_horizontal"
@@ -227,7 +243,6 @@
                     android:layout_weight="4"
                     android:fontFamily="@font/montserrat_black"
                     android:gravity="bottom"
-                    android:text="250₴"
                     android:textColor="@color/black"
                     android:textSize="25sp" />
             </LinearLayout>
@@ -246,7 +261,7 @@
                 android:maxLines="1"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
-                android:text="перейти до оформлення замовлення"
+                android:text="@string/text_go_to_shop_cart"
                 android:textAllCaps="true"
                 android:textColor="@color/white" />
 

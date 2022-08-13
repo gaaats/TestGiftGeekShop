@@ -7,6 +7,9 @@
     android:background="@drawable/bkg_custom_grad_lin_1"
     tools:context=".ProductDetailsFragment">
 
+
+
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_vert_10"
         android:layout_width="wrap_content"
@@ -129,6 +132,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+
     <TextView
         android:id="@+id/tv_desc"
         android:layout_width="0dp"
@@ -138,8 +142,6 @@
         android:ellipsize="end"
         android:fontFamily="@font/jost_variable"
         android:gravity="start"
-        android:lines="15"
-        android:maxLines="15"
         android:textColor="@color/almost_black"
         app:layout_constraintBottom_toBottomOf="@id/guideline_hor_95"
         app:layout_constraintEnd_toEndOf="@id/guideline_vert_90"
