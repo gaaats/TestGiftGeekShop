@@ -376,17 +376,12 @@
         app:layout_constraintStart_toStartOf="@id/guideline_vert_30"
         app:layout_constraintTop_toTopOf="@id/guideline_hor_02" />
 
-
     <TextView
-        android:layout_width="wrap_content"
         android:id="@+id/tv_created_by"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:text="@string/created_by_geekshop_ukaine"
-        app:layout_constraintStart_toStartOf="parent"
+        style="@style/tv_created_by_style"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textSize="14sp"
-        android:layout_marginBottom="8dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 
 

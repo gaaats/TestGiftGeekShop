@@ -262,14 +262,11 @@
         app:layout_constraintStart_toStartOf="@id/guideline_vert_25" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:text="© Created by geekshop_ukaine "
-        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/tv_created_by"
+        style="@style/tv_created_by_style"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textSize="14sp"
-        android:layout_marginBottom="8dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <TextView
         android:id="@+id/tv_managers_fighting"

@@ -14,8 +14,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.testgiftgeekshop.adapters.MoreImagesPagerAdapter
 import com.example.testgiftgeekshop.databinding.FragmentProductDetailsBinding
+import com.example.testgiftgeekshop.presentation.ShopCartViewModel
 import com.example.testgiftgeekshop.utils.Constances
 import com.example.testgiftgeekshop.utils.ResourceVrap
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.scopes.FragmentScoped
 import kotlinx.coroutines.delay
@@ -30,6 +32,7 @@ class ProductDetailsFragment : Fragment() {
     lateinit var pagerAdapter: MoreImagesPagerAdapter
 
     private val mainViewModel by activityViewModels<MainVievModel>()
+    private val shopCartViewModel by activityViewModels<ShopCartViewModel>()
     private var _binding: FragmentProductDetailsBinding? = null
     private val binding get() = _binding ?: throw RuntimeException("ActivityMainBinding = null")
 
@@ -61,9 +64,9 @@ class ProductDetailsFragment : Fragment() {
         Log.d("image_test", "i am in onViewCreated")
         Log.d("image_test", "element is ${mainViewModel.singleProductOpened.value?.data?.name}")
         Log.d("image_test", "element is ${mainViewModel.singleProductOpened.value?.data?.images}")
-        mainViewModel.singleProductOpened.observe(viewLifecycleOwner){
+        mainViewModel.singleProductOpened.observe(viewLifecycleOwner) {
             Log.d("image_test", "images: ${it.data?.images}")
-            when (it){
+            when (it) {
                 is ResourceVrap.Success -> {
                     Log.d("image_test", "images: ${it.data?.images}")
                     binding.viewPager.adapter = pagerAdapter
@@ -95,6 +98,12 @@ class ProductDetailsFragment : Fragment() {
 
     private fun btnAddToBasketSetOnClickListener() {
         binding.btnAddToBasket.setOnClickListener {
+            shopCartViewModel.addToShopCart(mainViewModel.singleProductOpened.value!!.data!!)
+            Snackbar.make(
+                binding.root,
+                "Ви додали до корзини: ${mainViewModel.singleProductOpened.value!!.data!!.name}",
+                Snackbar.LENGTH_SHORT
+            ).show()
             lifecycleScope.launch {
                 binding.viewPager.visibility = View.GONE
                 binding.lottieAnimAddedToCart.setAnimation(R.raw.lottie_anim_added_to_cart)

@@ -8,8 +8,6 @@
     tools:context=".ProductDetailsFragment">
 
 
-
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_vert_10"
         android:layout_width="wrap_content"
@@ -123,31 +121,37 @@
 
     <TextView
         android:id="@+id/tv_created_by"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:text="@string/created_by_geekshop_ukaine"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        style="@style/tv_created_by_style"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-
-    <TextView
-        android:id="@+id/tv_desc"
+    <ScrollView
+        android:id="@+id/scroll_description"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="5dp"
-        android:autoSizeTextType="uniform"
-        android:ellipsize="end"
-        android:fontFamily="@font/jost_variable"
-        android:gravity="start"
-        android:textColor="@color/almost_black"
-        app:layout_constraintBottom_toBottomOf="@id/guideline_hor_95"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="@id/guideline_vert_90"
         app:layout_constraintStart_toStartOf="@id/guideline_vert_10"
-        app:layout_constraintTop_toTopOf="@id/guideline_hor_63"
-        tools:text="Галстук факультета Гриффиндор исполнен в цветах факультета (красный/золотой) без эмблемы. \nРазмер один универсальный, подойдет на любой возраст, приятный на ощупь, имеет красивый атласный перелив. Длина: 142 см, ширина: 4-6,5 см, длинна галстука регулируется. \nВ наличии так же: мантии, волшебные палочки, подвески, браслеты, очки, шарфики, шапки, стикеры, сладости и многое другое. \nВ нашем инстаграме geekshop_ukraine вы можете посмотреть все наши товары, у нас более 500 положительных отзывов в инстаграм.Часто задаваемые вопросы (FAQ). Могу ли я сам собрать бокс из того, что мне нравится?Да, конечно. Вы можете: 1. сами составить бокс на свое желание из любых товаров; 2. выбрать из уже готовых боксов (инстаграм geekshop_ukraine или каталог магазина на Prom.ua); 3. купить отдельные товары без бокса. Всегда Ваш, Geekshop." />
+        app:layout_constraintTop_toTopOf="@id/guideline_hor_63">
+
+        <TextView
+            android:id="@+id/tv_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:autoSizeTextType="uniform"
+            android:ellipsize="end"
+            android:fontFamily="@font/jost_variable"
+            android:gravity="start"
+            android:textColor="@color/almost_black"
+            app:layout_constraintBottom_toBottomOf="@id/guideline_hor_95"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vert_90"
+            app:layout_constraintStart_toStartOf="@id/guideline_vert_10"
+            app:layout_constraintTop_toTopOf="@id/guideline_hor_63"
+            tools:text="Галстук факультета Гриффиндор исполнен в цветах факультета (красный/золотой) без эмблемы. \nРазмер один универсальный, подойдет на любой возраст, приятный на ощупь, имеет красивый атласный перелив. Длина: 142 см, ширина: 4-6,5 см, длинна галстука регулируется. \nВ наличии так же: мантии, волшебные палочки, подвески, браслеты, очки, шарфики, шапки, стикеры, сладости и многое другое. \nВ нашем инстаграме geekshop_ukraine вы можете посмотреть все наши товары, у нас более 500 положительных отзывов в инстаграм.Часто задаваемые вопросы (FAQ). Могу ли я сам собрать бокс из того, что мне нравится?Да, конечно. Вы можете: 1. сами составить бокс на свое желание из любых товаров; 2. выбрать из уже готовых боксов (инстаграм geekshop_ukraine или каталог магазина на Prom.ua); 3. купить отдельные товары без бокса. Всегда Ваш, Geekshop." />
+
+
+    </ScrollView>
 
 
     <ImageView
@@ -179,23 +183,23 @@
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/main_group"
-        android:visibility="gone"
-        tools:visibility="visible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="tv_name, viewPager, btn_add_to_basket, tv_desc, tv_created_by" />
+        android:visibility="gone"
+        app:constraint_referenced_ids="tv_name, viewPager, btn_add_to_basket, scroll_description, tv_created_by"
+        tools:visibility="visible" />
 
-   <com.airbnb.lottie.LottieAnimationView
-       android:id="@+id/lottie_anim_vaiting"
-       android:layout_width="270dp"
-       android:layout_height="280dp"
-       app:layout_constraintBottom_toBottomOf="parent"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toTopOf="parent"
-       app:lottie_autoPlay="true"
-       app:lottie_loop="true"
-       app:lottie_rawRes="@raw/lottie_anim_panda"
-       tools:visibility="gone" />
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_anim_vaiting"
+        android:layout_width="270dp"
+        android:layout_height="280dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/lottie_anim_panda"
+        tools:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

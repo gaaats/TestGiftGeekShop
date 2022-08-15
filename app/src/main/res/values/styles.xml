@@ -94,4 +94,18 @@
         <item name="fontFamily">@font/jost_variable</item>
     </style>
 
+
+    <style name="tv_created_by_style">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:text">@string/created_by_geekshop_ukaine</item>
+        <item name="fontFamily">@font/jost_variable</item>
+    </style>
+
+
+
 </resources>

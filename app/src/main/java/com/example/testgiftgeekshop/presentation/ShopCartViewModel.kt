@@ -29,7 +29,6 @@ class ShopCartViewModel @Inject constructor(
         get() = _isShopCartEmpty
 
 
-
     init {
         _isShopCartEmpty.value = true
         _totalSum.value = 0
@@ -64,7 +63,6 @@ class ShopCartViewModel @Inject constructor(
         //
         // do not need
         //refreshShopCart()
-
     }
 
     private fun makeShopCartStateIsFull() {
@@ -72,7 +70,7 @@ class ShopCartViewModel @Inject constructor(
     }
 
 
-    fun minusProductFromShopCart(geekProductUI: GeekProductUI){
+    fun minusProductFromShopCart(geekProductUI: GeekProductUI) {
         val prePrice = _totalSum.value ?: 0
         val elementAlreadyThere = _listShopCart.value!!.find {
             it.id == geekProductUI.id
@@ -85,6 +83,8 @@ class ShopCartViewModel @Inject constructor(
         }
         _listShopCart.value!![index] = elementAlreadyThere
         _totalSum.value = prePrice - geekProductUI.price
+
+        checkIsShopCartIsEmpty()
     }
 
 
@@ -99,11 +99,13 @@ class ShopCartViewModel @Inject constructor(
 
         temp.removeAt(index)
         _listShopCart.value = temp
-        _totalSum.value = prePrice - geekProductUI.price
+        _totalSum.value = prePrice - (geekProductUI.price * geekProductUI.countInShopList)
+
+        checkIsShopCartIsEmpty()
     }
 
-    private fun checkIsShopCartIsEmpty(){
-        if (_totalSum.value ==0){
+    private fun checkIsShopCartIsEmpty() {
+        if (_totalSum.value == 0) {
             _isShopCartEmpty.value = true
         }
     }
@@ -122,11 +124,12 @@ class ShopCartViewModel @Inject constructor(
     }
 
     //test
-    fun getTotalSum() {
+    fun refreshTotalSumShopCart() {
         var sum = 0
         _listShopCart.value!!.forEach {
             sum += it.sumInShopList
         }
         _totalSum.value = sum
+        checkIsShopCartIsEmpty()
     }
 }

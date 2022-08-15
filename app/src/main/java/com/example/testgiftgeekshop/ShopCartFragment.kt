@@ -46,7 +46,7 @@ class ShopCartFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        shopCartViewModel.isShopCartEmpty.observe(viewLifecycleOwner){
+        shopCartViewModel.isShopCartEmpty.observe(viewLifecycleOwner) {
             initBtnConfirmObserve(it)
         }
 
@@ -107,15 +107,19 @@ class ShopCartFragment : Fragment() {
                     navigateToNextQuestion()
                 }
                 return
+            } else {
+                btnConfirmOrder.setOnClickListener {
+                    Snackbar.make(
+                        it,
+                        "Нам сумно, що Ваша корзинка порожня :(",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                }
+                btnConfirmOrder.background = btnConfirmNonActive
+                btnConfirmOrder.alpha = 0.3f
+                lottieEmptyShopCart.visibility = View.VISIBLE
+                lottieEmptyShopCart.playAnimation()
             }
-            btnConfirmOrder.setOnClickListener {
-                Snackbar.make(it, "Нам сумно, що Ваша корзинка порожня :(", Snackbar.LENGTH_SHORT).show()
-            }
-            btnConfirmOrder.background = btnConfirmNonActive
-            btnConfirmOrder.alpha = 0.3f
-            lottieEmptyShopCart.visibility = View.VISIBLE
-            lottieEmptyShopCart.playAnimation()
-
         }
     }
 

@@ -355,14 +355,10 @@
 
     <TextView
         android:id="@+id/tv_created_by"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="@string/created_by_geekshop_ukaine"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        style="@style/tv_created_by_style"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 
 
