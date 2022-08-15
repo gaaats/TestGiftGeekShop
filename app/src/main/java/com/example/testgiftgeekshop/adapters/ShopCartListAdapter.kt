@@ -31,7 +31,7 @@ class ShopCartListAdapter @Inject constructor(
 
     private var onItemPlusClickListener: ((geekProductUI: GeekProductUI) -> Unit)? = null
     private var onItemMinusClickListener: ((geekProductUI: GeekProductUI) -> Unit)? = null
-    private var onItemDeleteClickListener: ((geekProductUI: GeekProductUI) -> Unit)? = null
+    private var onItemDeleteClickListener: ((geekProductUI: GeekProductUI, countProductPreDelete:Int) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShopCartVievHolder {
         LayoutInflater.from(parent.context)
@@ -52,22 +52,29 @@ class ShopCartListAdapter @Inject constructor(
             btnPlus.setOnClickListener {
                 onItemPlusClickListener?.invoke(currentItem)
                 var textInside = tvItemCount.text.toString().toInt()
+                var sumInside = tvItemSum.text.toString().replace("₴", "").toInt()
                 textInside++
+                sumInside += currentItem.price
                 tvItemCount.text = textInside.toString()
+                tvItemSum.text = "${sumInside}₴"
             }
             btnMinus.setOnClickListener {
                 var textInside = tvItemCount.text.toString().toInt()
+                var sumInside = tvItemSum.text.toString().replace("₴", "").toInt()
                 if (textInside>=2){
                     onItemMinusClickListener?.invoke(currentItem)
                     textInside--
+                    sumInside -= currentItem.price
                     tvItemCount.text = textInside.toString()
+                    tvItemSum.text = "${sumInside}₴"
                     return@setOnClickListener
                 } else {
-                    onItemDeleteClickListener?.invoke(currentItem)
+                    onItemDeleteClickListener?.invoke(currentItem, textInside)
                 }
             }
             btnDelete.setOnClickListener {
-                onItemDeleteClickListener?.invoke(currentItem)
+                val countProductAddedToShopCart = tvItemCount.text.toString().toInt()
+                onItemDeleteClickListener?.invoke(currentItem, countProductAddedToShopCart)
             }
 
             if (currentItem.mainImage.isEmpty()) {
@@ -84,7 +91,6 @@ class ShopCartListAdapter @Inject constructor(
         }
     }
 
-
     fun setOnItemPlusClickListener(listener: (singleProduct: GeekProductUI) -> Unit) {
         onItemPlusClickListener = listener
     }
@@ -93,7 +99,7 @@ class ShopCartListAdapter @Inject constructor(
         onItemMinusClickListener = listener
     }
 
-    fun setOnItemDeleteClickListener(listener: (singleProduct: GeekProductUI) -> Unit) {
+    fun setOnItemDeleteClickListener(listener: (singleProduct: GeekProductUI, countProductPreDelete:Int) -> Unit) {
         onItemDeleteClickListener = listener
     }
 }

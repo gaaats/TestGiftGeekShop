@@ -1,20 +1,20 @@
 package com.example.testgiftgeekshop
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
-import com.example.testgiftgeekshop.adapters.ProductsListAdapter
+import com.example.geekshopappbuy.domain.entitys.GeekProductUI
 import com.example.testgiftgeekshop.adapters.ShopCartListAdapter
-import com.example.testgiftgeekshop.databinding.FragmentResultBinding
 import com.example.testgiftgeekshop.databinding.FragmentShopCartBinding
 import com.example.testgiftgeekshop.presentation.ShopCartViewModel
-import com.example.testgiftgeekshop.utils.ScreenModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.scopes.FragmentScoped
@@ -64,8 +64,8 @@ class ShopCartFragment : Fragment() {
             shopCartViewModel.addToShopCart(it)
         }
 
-        productsAdapter.setOnItemDeleteClickListener {
-            shopCartViewModel.removeFromShopCart(it)
+        productsAdapter.setOnItemDeleteClickListener { singleProduct, countProductPreDelete ->
+            initAlertDialogDeleteFromShopCart(singleProduct, countProductPreDelete)
         }
 
         productsAdapter.setOnItemMinusClickListener {
@@ -74,6 +74,23 @@ class ShopCartFragment : Fragment() {
 
 
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    private fun initAlertDialogDeleteFromShopCart(
+        singleProduct: GeekProductUI,
+        countProductPreDelete: Int
+    ) {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Видалення з корзинки")
+            .setMessage("Ви точно хочете даний товар з Вашої корзинки?")
+            .setPositiveButton("Видалити") { _, _ ->
+                shopCartViewModel.removeFromShopCart(singleProduct, countProductPreDelete)
+            }
+            .setNegativeButton("Залишити") { _, _ ->
+            }
+            .setCancelable(true)
+            .create()
+            .show()
     }
 
     override fun onDestroy() {
@@ -104,7 +121,12 @@ class ShopCartFragment : Fragment() {
                 btnConfirmOrder.background = btnConfirmActive
                 btnConfirmOrder.alpha = 1f
                 btnConfirmOrder.setOnClickListener {
-                    navigateToNextQuestion()
+                    // test viber
+
+                    startActivity(testViberSend())
+
+                    // it is here
+//                    navigateToNextQuestion()
                 }
                 return
             } else {
@@ -125,5 +147,37 @@ class ShopCartFragment : Fragment() {
 
     private fun navigateToNextQuestion() {
         findNavController().navigate(R.id.action_shopCartFragment_to_completeOrderFragment)
+    }
+
+    fun testViberSend(): Intent {
+
+        val text = "rtgtgttgt"
+        val number = "+380930545607"
+
+        val applicationpackage = "com.viber.voip"
+
+        val i = Intent(Intent.ACTION_SEND)
+        i.type = "text/plain"
+        i.putExtra(Intent.EXTRA_TEXT, text)
+        return if (applicationpackage === "choose") {
+            Intent.createChooser(i, "Share using")
+        } else {
+            i.setPackage(applicationpackage)
+            i
+        }
+    }
+
+    private fun initAlertDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Видалення з корзинки")
+            .setMessage("Ви точно хочете даний товар з Вашої корзинки?")
+            .setPositiveButton("Restart") { _, _ ->
+                findNavController().navigate(R.id.action_resultFragment_to_startFragment)
+            }
+            .setNegativeButton("Deny") { _, _ ->
+            }
+            .setCancelable(true)
+            .create()
+            .show()
     }
 }

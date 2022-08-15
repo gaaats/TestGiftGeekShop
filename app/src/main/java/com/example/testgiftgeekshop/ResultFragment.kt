@@ -167,7 +167,7 @@ class ResultFragment : Fragment() {
             }
             .setNegativeButton("Deny") { _, _ ->
             }
-            .setCancelable(false)
+            .setCancelable(true)
             .create()
             .show()
     }

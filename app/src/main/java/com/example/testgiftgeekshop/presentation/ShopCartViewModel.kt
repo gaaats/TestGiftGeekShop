@@ -1,12 +1,17 @@
 package com.example.testgiftgeekshop.presentation
 
 import android.app.Application
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.geekshopappbuy.domain.entitys.GeekProductUI
+import com.example.testgiftgeekshop.domain.entity.*
 import com.example.testgiftgeekshop.utils.ShopCartState
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -19,6 +24,10 @@ class ShopCartViewModel @Inject constructor(
     private var _listShopCart = MutableLiveData<MutableList<GeekProductUI>>()
     val listShopCart: LiveData<MutableList<GeekProductUI>>
         get() = _listShopCart
+
+//    private var _userTakeDeliveryCompany = MutableLiveData<DeliveryCompany>()
+//    val userTakeDeliveryCompany: LiveData<DeliveryCompany>
+//        get() = _userTakeDeliveryCompany
 
     private var _totalSum = MutableLiveData<Int>()
     val totalSum: LiveData<Int>
@@ -41,8 +50,10 @@ class ShopCartViewModel @Inject constructor(
             val elementAlreadyThere = _listShopCart.value!!.find {
                 it.id == geekProductUI.id
             }!!.copy()
-
+            val sumInShopList = elementAlreadyThere.sumInShopList
             elementAlreadyThere.countInShopList++
+
+            elementAlreadyThere.sumInShopList = sumInShopList + elementAlreadyThere.price
             val index = _listShopCart.value!!.indexOfFirst {
                 it.id == elementAlreadyThere.id
             }
@@ -88,7 +99,7 @@ class ShopCartViewModel @Inject constructor(
     }
 
 
-    fun removeFromShopCart(geekProductUI: GeekProductUI) {
+    fun removeFromShopCart(geekProductUI: GeekProductUI, countProductPreDelete: Int) {
         val prePrice = _totalSum.value ?: 0
         val temp = mutableListOf<GeekProductUI>()
         geekProductUI.isElementInShopList = false
@@ -99,7 +110,7 @@ class ShopCartViewModel @Inject constructor(
 
         temp.removeAt(index)
         _listShopCart.value = temp
-        _totalSum.value = prePrice - (geekProductUI.price * geekProductUI.countInShopList)
+        _totalSum.value = prePrice - (geekProductUI.price * countProductPreDelete)
 
         checkIsShopCartIsEmpty()
     }
@@ -131,5 +142,66 @@ class ShopCartViewModel @Inject constructor(
         }
         _totalSum.value = sum
         checkIsShopCartIsEmpty()
+    }
+
+    fun sendOrderToNusick(): Intent {
+
+        val text = "тут буде текст замовлення"
+        val number = "+380938858600"
+        val applicationpackage = "com.whatsapp"
+
+        if (checkIsWattsUppInstalled()) {
+            val intent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("https://api.whatsapp.com/send?phone=${number}&text=${text}")
+            )
+            return intent
+        }
+        throw RuntimeException("Встановіть, будь ласка, WattsUpp")
+    }
+
+    private fun checkIsWattsUppInstalled(): Boolean {
+        val applicationpackage = "com.whatsapp"
+        val packageManager = application.packageManager
+        return try {
+            packageManager.getPackageInfo(applicationpackage, PackageManager.GET_ACTIVITIES)
+            true
+        } catch (e: PackageManager.NameNotFoundException) {
+            false
+        }
+    }
+
+    fun crateNevOrder(
+        name: String,
+        secondName: String,
+        deliveryType: DeliveryModel,
+        totalSum: Int,
+        phoneNumberContact: String
+    ): OrderEntity {
+        return OrderEntity(
+            name, secondName, deliveryType, totalSum, phoneNumberContact
+        )
+    }
+
+    fun createDeliveryModel(
+        region: String,
+        city: String,
+        type: DeliveryCompany,
+        deliveryPhoneNumber: String
+    ): DeliveryModel {
+        return DeliveryModel(region, city, type, deliveryPhoneNumber)
+    }
+
+    fun chooseDeliveryCompany(
+        userTakeDeliveryCompany: Int,
+        deliveryDepartmentNumber: Int
+    ): DeliveryCompany {
+        return when (userTakeDeliveryCompany) {
+            55 -> NovaPoshta(deliveryDepartmentNumber)
+            66 -> return UkrPoshta(deliveryDepartmentNumber)
+            else -> {
+                throw RuntimeException("there is no such delivery company")
+            }
+        }
     }
 }
