@@ -43,4 +43,43 @@
     <string name="add_question_wolverine">Wolverine</string>
     <string name="citata_dumbldor">Майте терпіння... \n <u>©Альбус Дамблдор</u></string>
     <string name="text_go_to_shop_cart">перейти до кошика замовлень</string>
+    <string name="text_take_delivery">Оберіть спосіб доставки</string>
+    <string name="delivery_person_data">дані одержувача</string>
+    <string name="text_delivery_data">дані доставки</string>
+    <string name="additional_info">Додаткова інформація</string>
+    <string name="ukrposhta_name">Укрпошта</string>
+    <string name="nova_poshta_name">Нова пошта</string>
+    <string name="go_to_choose_delivery">перейти до доставки</string>
+    <string name="other_important_info_text">Інша важлива інформація</string>
+
+
+    <string-array name="ukraine_regions">
+        <item>Київська область</item>
+        <item>Вінницька область</item>
+        <item>Волинська область</item>
+        <item>Дніпропетровська область</item>
+        <item>Донецька область</item>
+        <item>Житомирська область</item>
+        <item>Закарпатська область</item>
+        <item>Запорізька область</item>
+        <item>Івано-Франківська область</item>
+        <item>Кіровоградська область</item>
+        <item>Крим</item>
+        <item>Луганська область</item>
+        <item>Львівська область</item>
+        <item>Миколаївська область</item>
+        <item>Одеська область</item>
+        <item>Полтавська область</item>
+        <item>Рівненська область</item>
+        <item>Сумська область</item>
+        <item>Тернопільська область</item>
+        <item>Харківська область</item>
+        <item>Херсонська область</item>
+        <item>Хмельницька область</item>
+        <item>Черкаська область</item>
+        <item>Чернівецька область</item>
+        <item>Чернігівська область</item>
+    </string-array>
+
+
 </resources>

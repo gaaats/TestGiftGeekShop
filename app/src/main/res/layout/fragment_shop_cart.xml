@@ -172,7 +172,7 @@
         android:maxLines="1"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:text="замовлення підтверджую"
+        android:text="@string/go_to_choose_delivery"
         android:textAllCaps="true"
         android:textColor="@color/white" />
 

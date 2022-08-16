@@ -33,7 +33,9 @@ class StartFragment : Fragment() {
 
         // for fast test
         binding.tvStScrnHaveIdea.setOnClickListener {
-            testViberSend4()
+
+            findNavController().navigate(R.id.action_startFragment_to_completeOrderFragment)
+//            testViberSend4()
 
 //            findNavController().navigate(R.id.action_startFragment_to_resultFragment)
         }

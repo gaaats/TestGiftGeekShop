@@ -1,9 +1,11 @@
 package com.example.testgiftgeekshop.domain.entity
 
 data class OrderEntity(
-    val name: String,
-    val secondName: String,
-    val deliveryType:DeliveryModel,
-    val totalSum:Int,
-    val phoneNumberContact:String
-)
+    val name: String = "",
+    val secondName: String = "",
+    val deliveryType:DeliveryModel = DeliveryModel(),
+    val totalSum:Int = 0,
+    val phoneNumberContact:String = "",
+    val paymentType:String = "",
+){
+}

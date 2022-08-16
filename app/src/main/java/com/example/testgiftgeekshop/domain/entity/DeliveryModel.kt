@@ -1,15 +1,15 @@
 package com.example.testgiftgeekshop.domain.entity
 
 data class DeliveryModel(
-    val region: String,
-    val city: String,
-    val type: DeliveryCompany,
-    val deliveryPhoneNumber: String
+    val region: String = "",
+    val city: String = "",
+    val deliveryCompany: DeliveryCompany = NovaPoshta("0"),
+    val deliveryPhoneNumber: String = ""
 )
 
 sealed class DeliveryCompany(
-    deliveryDepartmentNumber: Int
+    deliveryDepartmentNumber: String
 )
 
-data class NovaPoshta(val depNumber: Int) : DeliveryCompany(deliveryDepartmentNumber = depNumber)
-data class UkrPoshta(val indexNumber: Int) : DeliveryCompany(deliveryDepartmentNumber = indexNumber)
+data class NovaPoshta(val depNumber: String) : DeliveryCompany(deliveryDepartmentNumber = depNumber)
+data class UkrPoshta(val indexNumber: String) : DeliveryCompany(deliveryDepartmentNumber = indexNumber)

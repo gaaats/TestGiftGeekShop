@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_startFragment_to_resultFragment"
             app:destination="@id/resultFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_completeOrderFragment"
+            app:destination="@id/completeOrderFragment" />
     </fragment>
     <fragment
         android:id="@+id/question1Fragment"
