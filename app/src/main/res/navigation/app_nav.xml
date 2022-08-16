@@ -131,6 +131,15 @@
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right"
             app:destination="@id/shopCartFragment" />
+        <action
+            android:id="@+id/action_resultFragment_to_emptyResultFragment"
+            app:destination="@id/emptyResultFragment"
+            app:launchSingleTop="true"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"
+            app:popUpTo="@id/startFragment" />
     </fragment>
     <fragment
         android:id="@+id/completeOrderFragment"
@@ -201,5 +210,19 @@
             app:popExitAnim="@anim/to_right"
             android:id="@+id/action_shopCartFragment_to_completeOrderFragment"
             app:destination="@id/completeOrderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/emptyResultFragment"
+        android:name="com.example.testgiftgeekshop.EmptyResultFragment"
+        android:label="fragment_empty_result"
+        tools:layout="@layout/fragment_empty_result" >
+        <action
+            android:id="@+id/action_emptyResultFragment_to_startFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"
+            app:destination="@id/startFragment"
+            app:launchSingleTop="true" />
     </fragment>
 </navigation>

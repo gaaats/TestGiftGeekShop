@@ -51,6 +51,7 @@
     <string name="nova_poshta_name">Нова пошта</string>
     <string name="go_to_choose_delivery">перейти до доставки</string>
     <string name="other_important_info_text">Інша важлива інформація</string>
+    <string name="text_looks_like_error_or_emorty_list">Схоже сталася помилка... \n або ж за Вашими критеріями ми не знайшли жодного варіанту...</string>
 
 
     <string-array name="ukraine_regions">

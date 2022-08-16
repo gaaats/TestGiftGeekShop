@@ -16,11 +16,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.testgiftgeekshop.databinding.FragmentCompleteOrderBinding
-import com.example.testgiftgeekshop.domain.entity.DeliveryCompany
 import com.example.testgiftgeekshop.presentation.ShopCartViewModel
 import com.example.testgiftgeekshop.utils.OrderStatusVrapper
 import com.google.android.material.R
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.scopes.FragmentScoped
@@ -34,7 +32,6 @@ class CompleteOrderFragment : Fragment() {
     private var deliveryCompanyName: String = ""
     private var region: String = ""
     private var paymentType: String = ""
-
     private var _binding: FragmentCompleteOrderBinding? = null
     private val binding get() = _binding ?: throw RuntimeException("ActivityMainBinding = null")
     private val shopCartViewModel by activityViewModels<ShopCartViewModel>()
@@ -55,21 +52,42 @@ class CompleteOrderFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+        initMainFunObserveCollectFlowFragment()
+        addTextChangedListenerWatcher(binding.textInputFirstName)
+        addTextChangedListenerWatcher(binding.textInputSecondName)
+        addTextChangedListenerWatcher(binding.textInputPhoneNumber)
+        addTextChangedListenerWatcher(binding.textInputDeliveryDepNumber)
+        addTextChangedListenerWatcher(binding.textInputCity)
+
+        tnConfirmDeliveryAndTotalSetOnClickListener()
+        initAdapterSpinnerDeliveryCompany()
+        initSpinnerDeliveryCompOnItemSelectedListener()
+        initSpinnerRegionsOnItemSelectedListener()
+
+        initAdapterSpinnerPaymentType()
+        initSpinnerPaymentTypeOnItemSelectedListener()
+
+
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+    private fun tnConfirmDeliveryAndTotalSetOnClickListener() {
+        binding.btnConfirmDeliveryAndTotal.setOnClickListener {
+            acceptOrder()
+            //            findNavController().navigate(R.id.action_completeOrderFragment_to_thankYouFragment)
+        }
+    }
+
+    private fun initMainFunObserveCollectFlowFragment() {
         collectFlowFragment(shopCartViewModel.orderStatusInput) {
             when (it) {
                 is OrderStatusVrapper.Success -> {
                     Log.d("state_test", "state  is Success")
-                    Log.d(
-                        "state_test",
-                        "name is ${it.safeData.name}, payment is ${it.safeData.paymentType}"
-                    )
-//                    binding.btnConfirmDeliveryAndTotal.setOnClickListener {view->
-////                        Snackbar.make(
-////                            binding.root,
-////                            "name is ${it.safeData.name}, payment is ${it.safeData.paymentType}",
-////                            Snackbar.LENGTH_SHORT
-////                        ).show()
-//                    }
+//                    Log.d(
+//                        "state_test",
+//                        "name is ${it.safeData.name}, payment is ${it.safeData.paymentType}"
+//                    )
+                    Log.d("state_test", shopCartViewModel.finalConfirmOrder())
                 }
                 is OrderStatusVrapper.Error -> {
                     Log.d("state_test", "state  is Error")
@@ -88,13 +106,6 @@ class CompleteOrderFragment : Fragment() {
                     if (it.safeError.errorCity) {
                         binding.textInLayCity.error = "помилка, перевірте дані"
                     }
-//                    binding.btnConfirmDeliveryAndTotal.setOnClickListener {
-////                        Snackbar.make(
-////                            binding.root,
-////                            "Десь є помилка при вводі даних",
-////                            Snackbar.LENGTH_SHORT
-////                        ).show()
-//                    }
                 }
                 is OrderStatusVrapper.InProcess -> {
                     Log.d("state_test", "state  is InProcess")
@@ -106,31 +117,6 @@ class CompleteOrderFragment : Fragment() {
                 }
             }
         }
-
-
-        addTextChangedListenerWatcher(binding.textInputFirstName)
-        addTextChangedListenerWatcher(binding.textInputSecondName)
-        addTextChangedListenerWatcher(binding.textInputPhoneNumber)
-        addTextChangedListenerWatcher(binding.textInputDeliveryDepNumber)
-        addTextChangedListenerWatcher(binding.textInputCity)
-
-//        binding.testV.setOnClickListener {
-//            findNavController().navigate(R.id.action_completeOrderFragment_to_thankYouFragment)
-//        }
-
-        binding.btnConfirmDeliveryAndTotal.setOnClickListener {
-            acceptOrder()
-        }
-
-        initAdapterSpinnerDeliveryCompany()
-        initSpinnerDeliveryCompOnItemSelectedListener()
-        initSpinnerRegionsOnItemSelectedListener()
-
-        initAdapterSpinnerPaymentType()
-        initSpinnerPaymentTypeOnItemSelectedListener()
-
-
-        super.onViewCreated(view, savedInstanceState)
     }
 
 
@@ -169,12 +155,6 @@ class CompleteOrderFragment : Fragment() {
                     id: Long
                 ) {
                     paymentType = adapter?.getItemAtPosition(position).toString()
-                    Toast.makeText(
-                        requireContext(),
-                        "you press $paymentType",
-                        Toast.LENGTH_SHORT
-                    )
-                        .show()
                 }
 
                 override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -192,12 +172,6 @@ class CompleteOrderFragment : Fragment() {
                     id: Long
                 ) {
                     deliveryCompanyName = adapter?.getItemAtPosition(position).toString()
-                    Toast.makeText(
-                        requireContext(),
-                        "you press $deliveryCompanyName",
-                        Toast.LENGTH_SHORT
-                    )
-                        .show()
                 }
 
                 override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -215,12 +189,6 @@ class CompleteOrderFragment : Fragment() {
                     id: Long
                 ) {
                     region = adapter?.getItemAtPosition(position).toString()
-                    Toast.makeText(
-                        requireContext(),
-                        "you press $region",
-                        Toast.LENGTH_SHORT
-                    )
-                        .show()
                 }
 
                 override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -228,23 +196,12 @@ class CompleteOrderFragment : Fragment() {
             }
     }
 
-    private fun acceptOrder(
-//        deliveryCompanyName: String,
-//        firstName: String,
-//        secondName: String,
-//        phoneNumber: String,
-//        region: String,
-//        city: String,
-//        deliveryDepartmentNumber: String,
-//        paymentType: String,
-//        otherAdditionalInfo: String,
-    ) {
+    private fun acceptOrder() {
         val firstName: String = binding.textInputFirstName.text.toString()
         val secondName: String = binding.textInputSecondName.text.toString()
         val phoneNumber: String = binding.textInputPhoneNumber.text.toString()
         val city: String = binding.textInputCity.text.toString()
         val deliveryDepartmentNumber: String = binding.textInputDeliveryDepNumber.text.toString()
-
         shopCartViewModel.acceptOrder(
             deliveryCompanyName = deliveryCompanyName,
             firstName = firstName,
@@ -266,7 +223,6 @@ class CompleteOrderFragment : Fragment() {
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 //here
-//                binding.textInLayFirstName.error = null
                 shopCartViewModel.cleanAllErrors()
             }
 
@@ -275,13 +231,10 @@ class CompleteOrderFragment : Fragment() {
         })
     }
 
-
     override fun onDestroy() {
         _binding = null
         super.onDestroy()
     }
-
-
 }
 
 fun <T> Fragment.collectFlowFragment(

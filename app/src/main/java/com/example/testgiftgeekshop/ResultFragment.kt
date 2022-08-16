@@ -48,12 +48,9 @@ class ResultFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-
         shopCartViewModel.totalSum.observe(viewLifecycleOwner) {
             binding.tvTotalSumCount.text = it.toString()
         }
-
-//        Log.d("onViewCreated", "${mainViewModel.listProducts.value!!.data}")
 
         startLoadingProgBar()
         iniLoadListProducts()
@@ -74,6 +71,11 @@ class ResultFragment : Fragment() {
             binding.lottieAnimVaiting.visibility = View.VISIBLE
             binding.tvPleaseVaitLoading.visibility = View.VISIBLE
             delay(2000)
+
+            if (mainViewModel.listProducts.value?.data.isNullOrEmpty() || mainViewModel.listProducts.value?.data?.size == 0 || mainViewModel.listProducts.value == null) {
+                findNavController().navigate(R.id.action_resultFragment_to_emptyResultFragment)
+            }
+
             binding.resScrnMainGroup.visibility = View.VISIBLE
             binding.lottieAnimVaiting.visibility = View.GONE
             binding.tvPleaseVaitLoading.visibility = View.GONE
@@ -103,7 +105,15 @@ class ResultFragment : Fragment() {
 
     private fun observeProductList() {
         mainViewModel.listProducts.observe(viewLifecycleOwner) {
-            productsAdapter.submitList(it.data)
+            Log.d("test_empty", "list is size is ${it.data?.size}")
+            if (it.data?.size == 0 || it.data.isNullOrEmpty()) {
+
+                findNavController().navigate(R.id.action_resultFragment_to_emptyResultFragment)
+
+
+            } else {
+                productsAdapter.submitList(it.data)
+            }
         }
     }
 
@@ -126,11 +136,13 @@ class ResultFragment : Fragment() {
 
         // on btn add to shop cart listener
         productsAdapter.setOnItemAddToCartClickListener {
-            Snackbar.make(binding.root, "Ви додали до корзини: ${it.name}", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(binding.root, "Ви додали до корзини: ${it.name}", Snackbar.LENGTH_SHORT)
+                .show()
             lifecycleScope.launch {
                 binding.lottieAnimAddedToCart.visibility = View.VISIBLE
                 binding.lottieAnimAddedToCart.playAnimation()
                 delay(1800)
+
                 binding.lottieAnimAddedToCart.visibility = View.GONE
                 binding.lottieAnimAddedToCart.pauseAnimation()
             }
@@ -163,6 +175,8 @@ class ResultFragment : Fragment() {
             .setTitle("Пройти тест заново")
             .setMessage("Ви точно хочете пройти тест заново, дані поточного тесту не будуть збережені?")
             .setPositiveButton("Restart") { _, _ ->
+                mainViewModel.restartTest()
+                shopCartViewModel.restartTest()
                 findNavController().navigate(R.id.action_resultFragment_to_startFragment)
             }
             .setNegativeButton("Deny") { _, _ ->

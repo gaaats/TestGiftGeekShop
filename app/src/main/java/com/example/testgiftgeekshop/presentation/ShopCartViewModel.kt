@@ -10,17 +10,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.geekshopappbuy.domain.entitys.GeekProductUI
-import com.example.testgiftgeekshop.R
 import com.example.testgiftgeekshop.data.entity.ErrorInputModel
 import com.example.testgiftgeekshop.domain.entity.*
 import com.example.testgiftgeekshop.utils.OrderStatusVrapper
-import com.example.testgiftgeekshop.utils.ResourceVrap
-import com.example.testgiftgeekshop.utils.ShopCartState
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -30,14 +25,12 @@ class ShopCartViewModel @Inject constructor(
     private val application: Application
 ) : ViewModel() {
 
-//    private val _orderEntity = MutableStateFlow(OrderEntity())
-//    val orderEntity: StateFlow<OrderEntity> = _orderEntity
-
-    private val _orderStatusInput = MutableStateFlow<OrderStatusVrapper>(OrderStatusVrapper.InProcess)
+    private val _orderStatusInput =
+        MutableStateFlow<OrderStatusVrapper>(OrderStatusVrapper.InProcess)
     val orderStatusInput: StateFlow<OrderStatusVrapper> = _orderStatusInput
 
     private val _errorInputEntity = MutableStateFlow(ErrorInputModel())
-    val errorInputEntity: StateFlow<ErrorInputModel> = _errorInputEntity
+//    val errorInputEntity: StateFlow<ErrorInputModel> = _errorInputEntity
 
     val novaPoshtaName by lazy {
         application.getString(com.example.testgiftgeekshop.R.string.nova_poshta_name)
@@ -46,17 +39,9 @@ class ShopCartViewModel @Inject constructor(
         application.getString(com.example.testgiftgeekshop.R.string.ukrposhta_name)
     }
 
-    private var _errorModel = MutableLiveData<ErrorInputModel>()
-    val errorModel: LiveData<ErrorInputModel>
-        get() = _errorModel
-
     private var _listShopCart = MutableLiveData<MutableList<GeekProductUI>>()
     val listShopCart: LiveData<MutableList<GeekProductUI>>
         get() = _listShopCart
-
-    private var _userTakeDeliveryCompany = MutableLiveData<DeliveryCompany>()
-    val userTakeDeliveryCompany: LiveData<DeliveryCompany>
-        get() = _userTakeDeliveryCompany
 
     private var _totalSum = MutableLiveData<Int>()
     val totalSum: LiveData<Int>
@@ -71,8 +56,6 @@ class ShopCartViewModel @Inject constructor(
         _isShopCartEmpty.value = true
         _totalSum.value = 0
         _listShopCart.value = mutableListOf()
-        _errorModel.value = ErrorInputModel()
-//        _userTakeDeliveryCompany.value = NovaPoshta(1)
     }
 
     fun addToShopCart(geekProductUI: GeekProductUI) {
@@ -152,11 +135,11 @@ class ShopCartViewModel @Inject constructor(
         }
     }
 
-    fun refreshShopCart() {
-        val temp = mutableListOf<GeekProductUI>()
-        temp.addAll(_listShopCart.value!!)
-        _listShopCart.value = temp
-    }
+//    fun refreshShopCart() {
+//        val temp = mutableListOf<GeekProductUI>()
+//        temp.addAll(_listShopCart.value!!)
+//        _listShopCart.value = temp
+//    }
 
     private fun checkIsItemAlreadyInShopCart(geekProductUI: GeekProductUI): Boolean {
         _listShopCart.value!!.forEach {
@@ -166,14 +149,14 @@ class ShopCartViewModel @Inject constructor(
     }
 
     //test
-    fun refreshTotalSumShopCart() {
-        var sum = 0
-        _listShopCart.value!!.forEach {
-            sum += it.sumInShopList
-        }
-        _totalSum.value = sum
-        checkIsShopCartIsEmpty()
-    }
+//    fun refreshTotalSumShopCart() {
+//        var sum = 0
+//        _listShopCart.value!!.forEach {
+//            sum += it.sumInShopList
+//        }
+//        _totalSum.value = sum
+//        checkIsShopCartIsEmpty()
+//    }
 
     fun sendOrderToNusick(): Intent {
 
@@ -202,27 +185,6 @@ class ShopCartViewModel @Inject constructor(
         }
     }
 
-    fun createNevOrder(
-        name: String,
-        secondName: String,
-        deliveryType: DeliveryModel,
-        totalSum: Int,
-        phoneNumberContact: String
-    ): OrderEntity {
-        return OrderEntity(
-            name, secondName, deliveryType, totalSum, phoneNumberContact
-        )
-    }
-
-//    fun createDeliveryModel(
-//        region: String,
-//        city: String,
-//        type: DeliveryCompany,
-//        deliveryPhoneNumber: String
-//    ): DeliveryModel {
-////        return DeliveryModel(region, city, type, deliveryPhoneNumber)
-//    }
-
     fun chooseDeliveryCompany(
         userTakeDeliveryCompany: String,
         deliveryDepartmentNumber: String
@@ -236,29 +198,13 @@ class ShopCartViewModel @Inject constructor(
         }
     }
 
-//    private fun parseNumber(inputNumber: String?): Int {
-//        return try {
-//            inputNumber?.trim()?.toInt() ?: 0
-//        } catch (e: Exception) {
-//            0
-//        }
-//    }
-
     private fun parseString(inputString: String?): String {
         return inputString?.trim() ?: ""
     }
 
     private fun validating(name: String): Boolean {
         var result = true
-        if (name.isBlank()) {
-            result = false
-//            _errorInputNameLD.value = true
-
-        }
-//        if (count <= 0) {
-//            result = false
-//            _errorInputNumberLD.value = true
-//        }
+        if (name.isBlank()) result = false
         return result
     }
 
@@ -272,7 +218,8 @@ class ShopCartViewModel @Inject constructor(
         deliveryDepartmentNumber: String,
         paymentType: String,
     ) = viewModelScope.launch {
-        // checking
+
+        // checking for error input
         val firstNameAfterParse = parseString(firstName)
         val secondNameAfterParse = parseString(secondName)
         val cityAfterParse = parseString(city)
@@ -281,7 +228,7 @@ class ShopCartViewModel @Inject constructor(
 
         _orderStatusInput.value.error?.cleanAllErrors()
 
-        if (!validating(firstNameAfterParse)){
+        if (!validating(firstNameAfterParse)) {
             Log.d(
                 "test_complete_frag",
                 "i am in error validating(firstNameAfterParse)"
@@ -289,31 +236,31 @@ class ShopCartViewModel @Inject constructor(
 
             _errorInputEntity.value.errorFirstName = true
         }
-        if (!validating(secondNameAfterParse)){
+        if (!validating(secondNameAfterParse)) {
             _errorInputEntity.value.errorSecondName = true
         }
-        if (!validating(phoneNumberAfterParse)){
+        if (!validating(phoneNumberAfterParse)) {
             _errorInputEntity.value.errorPhoneNumber = true
         }
-        if (!validating(cityAfterParse)){
+        if (!validating(cityAfterParse)) {
             _errorInputEntity.value.errorCity = true
         }
-        if (!validating(deliveryDepartmentNumberAfterParse)){
+        if (!validating(deliveryDepartmentNumberAfterParse)) {
             _errorInputEntity.value.errorDeliveryDepartmentNumber = true
         }
-        Log.d(
-            "test_complete_frag",
-            "errorFirstName ${_errorInputEntity.value.errorFirstName}"
-        )
-        Log.d(
-            "test_complete_frag",
-            "isThereAnyError ${_errorInputEntity.value.isThereAnyError()}"
-        )
+//        Log.d(
+//            "test_complete_frag",
+//            "errorFirstName ${_errorInputEntity.value.errorFirstName}"
+//        )
+//        Log.d(
+//            "test_complete_frag",
+//            "isThereAnyError ${_errorInputEntity.value.isThereAnyError()}"
+//        )
 
         // MAIN CHECK FOR ERRORS inside INPUT TEXT
-        if (_errorInputEntity.value.isThereAnyError()){
+        if (_errorInputEntity.value.isThereAnyError()) {
             _orderStatusInput.value = OrderStatusVrapper.Error(_errorInputEntity.value)
-        } else{
+        } else {
             val deliveryCompany = chooseDeliveryCompany(
                 deliveryCompanyName, deliveryDepartmentNumber
             )
@@ -337,5 +284,25 @@ class ShopCartViewModel @Inject constructor(
     fun cleanAllErrors() = viewModelScope.launch {
         _orderStatusInput.value.error?.cleanAllErrors()
         _orderStatusInput.value = OrderStatusVrapper.InProcess
+    }
+
+    private fun getListNames(): String {
+        var messageItems = "Моє замовлення:\n"
+        _listShopCart.value?.forEach {
+            messageItems = "$messageItems \n${it.name}  кількість: ${it.countInShopList}"
+        }
+        return "$messageItems."
+    }
+
+    fun finalConfirmOrder(): String {
+        return "Привіт. \nЯ хочу зробити замовлення :)\n" +
+                getListNames() + "\n"+
+                "\n${_orderStatusInput.value.safeData.returnTextAboutDelivery()}."
+    }
+
+    fun restartTest() {
+        _isShopCartEmpty.value = true
+        _totalSum.value = 0
+        _listShopCart.value = mutableListOf()
     }
 }

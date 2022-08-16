@@ -121,12 +121,12 @@ class ShopCartFragment : Fragment() {
                 btnConfirmOrder.background = btnConfirmActive
                 btnConfirmOrder.alpha = 1f
                 btnConfirmOrder.setOnClickListener {
-                    // test viber
 
-                    startActivity(testViberSend())
+                    // test viber
+//                    startActivity(testViberSend())
 
                     // it is here
-//                    navigateToNextQuestion()
+                    navigateToNextQuestion()
                 }
                 return
             } else {
@@ -167,17 +167,17 @@ class ShopCartFragment : Fragment() {
         }
     }
 
-    private fun initAlertDialog() {
-        AlertDialog.Builder(requireContext())
-            .setTitle("Видалення з корзинки")
-            .setMessage("Ви точно хочете даний товар з Вашої корзинки?")
-            .setPositiveButton("Restart") { _, _ ->
-                findNavController().navigate(R.id.action_resultFragment_to_startFragment)
-            }
-            .setNegativeButton("Deny") { _, _ ->
-            }
-            .setCancelable(true)
-            .create()
-            .show()
-    }
+//    private fun initAlertDialog() {
+//        AlertDialog.Builder(requireContext())
+//            .setTitle("Видалення з корзинки")
+//            .setMessage("Ви точно хочете даний товар з Вашої корзинки?")
+//            .setPositiveButton("Restart") { _, _ ->
+//                findNavController().navigate(R.id.action_resultFragment_to_startFragment)
+//            }
+//            .setNegativeButton("Deny") { _, _ ->
+//            }
+//            .setCancelable(true)
+//            .create()
+//            .show()
+//    }
 }

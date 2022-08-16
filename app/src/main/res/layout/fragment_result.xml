@@ -22,7 +22,6 @@
         android:elevation="1dp"
         android:visibility="gone"
         app:lottie_loop="false"/>
-<!--        android:elevation="1dp"-->
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_hor_20"
