@@ -111,7 +111,7 @@
         android:maxLines="1"
         android:paddingStart="45dp"
         android:paddingEnd="45dp"
-        android:text="додати до кошику"
+        android:text="@string/text_add_to_shop_cart"
         android:textAllCaps="true"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@id/guideline_hor_63"

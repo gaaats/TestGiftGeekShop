@@ -13,9 +13,9 @@
         app:layout_constraintGuide_percent="0.10" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_hor_17"
+        android:id="@+id/guideline_hor_23"
         style="@style/guideline_simple_style_horizontal"
-        app:layout_constraintGuide_percent="0.19" />
+        app:layout_constraintGuide_percent="0.23" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_vert_90"
@@ -45,8 +45,8 @@
         android:background="@drawable/tv_custom_2"
         android:fontFamily="@font/montserrat_black"
         android:gravity="center"
-        android:lines="3"
-        android:maxLines="3"
+        android:lines="4"
+        android:maxLines="4"
         android:paddingStart="6dp"
         android:paddingTop="3dp"
         android:paddingEnd="6dp"
@@ -54,13 +54,13 @@
         android:text="@string/text_looks_like_error_or_emorty_list"
         android:textAllCaps="true"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@id/guideline_hor_17"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_hor_23"
         app:layout_constraintEnd_toEndOf="@id/guideline_vert_90"
         app:layout_constraintStart_toStartOf="@id/guideline_vert_10"
         app:layout_constraintTop_toTopOf="@id/guideline_hor_10" />
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottie_anim_empty_result_list"
+        android:id="@+id/img_empty_result_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

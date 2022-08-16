@@ -1,5 +1,6 @@
 package com.example.testgiftgeekshop
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -10,11 +11,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
+import com.example.testgiftgeekshop.R.*
 import com.example.testgiftgeekshop.databinding.FragmentCompleteOrderBinding
 import com.example.testgiftgeekshop.presentation.ShopCartViewModel
 import com.example.testgiftgeekshop.utils.OrderStatusVrapper
@@ -36,10 +38,22 @@ class CompleteOrderFragment : Fragment() {
     private val binding get() = _binding ?: throw RuntimeException("ActivityMainBinding = null")
     private val shopCartViewModel by activityViewModels<ShopCartViewModel>()
     private val novaPoshtaName by lazy {
-        requireContext().getString(com.example.testgiftgeekshop.R.string.nova_poshta_name)
+        requireContext().getString(string.nova_poshta_name)
     }
     private val ukrPoshtaName by lazy {
-        requireContext().getString(com.example.testgiftgeekshop.R.string.ukrposhta_name)
+        requireContext().getString(string.ukrposhta_name)
+    }
+
+    private val novaPoshtaPaymentVar by lazy {
+        requireContext().resources.getStringArray(array.nova_poshta_payments_var)
+    }
+
+    private val ukrposhtaPaymentVar by lazy {
+        requireContext().resources.getStringArray(array.ukrposhta_payments_var)
+    }
+
+    private val samovivozPaymentVar by lazy {
+        requireContext().resources.getStringArray(array.samovivoz_payments_var)
     }
 
     override fun onCreateView(
@@ -59,35 +73,59 @@ class CompleteOrderFragment : Fragment() {
         addTextChangedListenerWatcher(binding.textInputDeliveryDepNumber)
         addTextChangedListenerWatcher(binding.textInputCity)
 
-        tnConfirmDeliveryAndTotalSetOnClickListener()
+        initBtnConfirmDeliveryAndTotalSetOnClickListener()
         initAdapterSpinnerDeliveryCompany()
         initSpinnerDeliveryCompOnItemSelectedListener()
         initSpinnerRegionsOnItemSelectedListener()
 
-        initAdapterSpinnerPaymentType()
         initSpinnerPaymentTypeOnItemSelectedListener()
-
+        lottieAnimQuestionSamovivozSetOnClickListener()
 
         super.onViewCreated(view, savedInstanceState)
     }
 
-    private fun tnConfirmDeliveryAndTotalSetOnClickListener() {
+    private fun lottieAnimQuestionSamovivozSetOnClickListener() {
+        binding.lottieAnimQuestionSamovivoz.setOnClickListener {
+            initAlertDialog()
+        }
+    }
+
+    private fun initAlertDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Самовивіз")
+            .setMessage("По Києву є самовивіз за адресою вул. Тампере 17/2, Лівий берег. \n" +
+                    "При спілкуванні з менеджером просто скажіть, що бажаєте самостійно забрати замовлення.\n" +
+                    "Дата та час самовивозу мають бути попередньо узгоджені.\n" +
+                    "Решту деталей Вам повідомить менеджер.\n" +
+                    "❤")
+            .setPositiveButton("Зрозуміло") { _, _ ->
+            }
+            .setCancelable(true)
+            .create()
+            .show()
+
+    }
+
+    private fun initBtnConfirmDeliveryAndTotalSetOnClickListener() {
         binding.btnConfirmDeliveryAndTotal.setOnClickListener {
             acceptOrder()
-            //            findNavController().navigate(R.id.action_completeOrderFragment_to_thankYouFragment)
+//            navigateToThankYouFragment()
         }
+    }
+
+    private fun navigateToThankYouFragment() {
+        findNavController().navigate(com.example.testgiftgeekshop.R.id.action_completeOrderFragment_to_thankYouFragment)
     }
 
     private fun initMainFunObserveCollectFlowFragment() {
         collectFlowFragment(shopCartViewModel.orderStatusInput) {
             when (it) {
                 is OrderStatusVrapper.Success -> {
+
                     Log.d("state_test", "state  is Success")
-//                    Log.d(
-//                        "state_test",
-//                        "name is ${it.safeData.name}, payment is ${it.safeData.paymentType}"
-//                    )
                     Log.d("state_test", shopCartViewModel.finalConfirmOrder())
+                    shopCartViewModel.finalConfirmOrder()
+                    navigateToThankYouFragment()
                 }
                 is OrderStatusVrapper.Error -> {
                     Log.d("state_test", "state  is Error")
@@ -130,13 +168,7 @@ class CompleteOrderFragment : Fragment() {
         binding.spinnerDeliveryCompany.adapter = adapter
     }
 
-    private fun initAdapterSpinnerPaymentType() {
-        val array = arrayOf(
-            "повна оплата на карту",
-            "повна оплата на реєстраційний рахунок ФОП",
-            "100 грн передплати, решта наложка",
-            "оплата при отриманні",
-        )
+    private fun initAdapterSpinnerPaymentType(array: Array<String>) {
         val adapter = ArrayAdapter(
             requireContext(),
             R.layout.support_simple_spinner_dropdown_item,
@@ -172,6 +204,15 @@ class CompleteOrderFragment : Fragment() {
                     id: Long
                 ) {
                     deliveryCompanyName = adapter?.getItemAtPosition(position).toString()
+                    when (deliveryCompanyName) {
+                        novaPoshtaName -> {
+                            initAdapterSpinnerPaymentType(novaPoshtaPaymentVar)
+                        }
+                        ukrPoshtaName -> {
+                            initAdapterSpinnerPaymentType(ukrposhtaPaymentVar)
+                        }
+                    }
+
                 }
 
                 override fun onNothingSelected(p0: AdapterView<*>?) {

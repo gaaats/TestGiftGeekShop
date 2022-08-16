@@ -44,23 +44,8 @@ class MainRepoImpl @Inject constructor(
             if (listGroups.isEmpty()) return ResourceVrap.Error(RuntimeException("listGroups is Empty"))
             listGroups.forEach {
                 val result = getSingleGroupProductsByGroupID(it)
-
-                //test
-                /*
-                result.data!!.body()!!.products!!.forEach {
-                    Log.d(
-                        "test_params",
-                        "Element name is  ${it!!.name}, status:${it.status}, presence:${it.presence}, presenceSure:${it.presenceSure}"
-                    )
-                }
-
-                 */
-
                 Mapper.mapGeekResponseProductListToUIList(result).also { list ->
                     mainList.addAll(list)
-
-                    //todo: add it after all elements added
-//                    filterByAvailable()
                 }
             }
             filterByAvailable()

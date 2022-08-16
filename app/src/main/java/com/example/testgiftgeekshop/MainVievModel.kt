@@ -3,10 +3,7 @@ package com.example.testgiftgeekshop
 import android.app.Application
 import android.util.Log
 import android.widget.ImageView
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.geekshopappbuy.domain.entitys.GeekProductUI
 import com.example.testgiftgeekshop.domain.usecases.*
 import com.example.testgiftgeekshop.utils.Constances
@@ -59,11 +56,6 @@ class MainVievModel @Inject constructor(
     val screenExternalMarvelState: LiveData<ScreenModel>
         get() = _screenExternalMarvelState
 
-    private val mapKeysGroupId = mapOf(
-        application.getString(R.string.question_1_for_parents) to 103894435,
-        application.getString(R.string.question_2_squid_game) to 101743532
-    )
-
     //for future
 //    private var _statusMessage  = MutableLiveData<SnackBarListener<String>>()
 //    val statusMessage: LiveData<SnackBarListener<String>>
@@ -88,20 +80,8 @@ class MainVievModel @Inject constructor(
         Log.d("element", " ${_singleProductOpened.value!!.data!!.name}")
     }
 
-    //    fun checkParamsQuestion1(){
-//        val list = screenFirstState.value!!.returnActiveParams()
-//        val listParamsSearch = mutableListOf<Int>()
-//
-//        Log.d("test_params", "list is $list")
-//        list.forEach { listParams ->
-//            listParams.forEach { param ->
-//                viewModelScope.launch (Dispatchers.IO) {
-//                    _listProducts.postValue(getAllProductsByGroupId.execute(param))
-//                }
-//            }
-//        }
-//    }
     private fun checkParamsQuestion1() {
+        _listProducts.value = ResourceVrap.Loading()
         val list1 = screenFirstState.value!!.returnActiveParams()
         val list2 = screenSecondState.value!!.returnActiveParams()
         val list3 = screenExternalMarvelState.value!!.returnActiveParams()
@@ -110,7 +90,7 @@ class MainVievModel @Inject constructor(
         combinedListParams.addAll(list2)
         combinedListParams.addAll(list3)
         Log.d("test_params", "combined list is: $combinedListParams")
-        combinedListParams.shuffle()
+//        combinedListParams.shuffle()
 
         //filters
         val filterListPrice = screenFourthState.value!!.returnActiveParams().sortedBy {
@@ -120,7 +100,9 @@ class MainVievModel @Inject constructor(
         // title filter
         val filterTitleList = screenThirdState.value!!.returnActiveParams()
         Log.d("test_params", "title filter is: $filterTitleList")
-        filterResultListByTitle.execute(filterTitleList)
+
+        //todo: if error fix here
+//        filterResultListByTitle.execute(filterTitleList)
 
 
         viewModelScope.launch(Dispatchers.IO) {
@@ -300,6 +282,10 @@ class MainVievModel @Inject constructor(
 
     fun pressedAnswer3(textAnswer: String) {
         Log.d("string_test", "before is ${_screenThirdState.value}")
+        val activeParam = _screenThirdState.value?.returnSingleActiveParams()
+        activeParam?.let {
+            _screenThirdState.value?.checkAnsAndChangeState(it)
+        }
         _screenThirdState.value?.checkAnsAndChangeState(textAnswer)
         _screenThirdState.value!!.also {
             _screenThirdState.value = it
@@ -309,6 +295,12 @@ class MainVievModel @Inject constructor(
 
     fun pressedAnswer4(textAnswer: String) {
         Log.d("string_test", "before is ${_screenFourthState.value}")
+
+        val activeParam = _screenFourthState.value?.returnSingleActiveParams()
+        activeParam?.let {
+            _screenFourthState.value?.checkAnsAndChangeState(it)
+        }
+
         _screenFourthState.value?.checkAnsAndChangeState(textAnswer)
         _screenFourthState.value!!.also {
             _screenFourthState.value = it

@@ -130,7 +130,7 @@
         android:paddingTop="3dp"
         android:paddingEnd="4dp"
         android:paddingBottom="3dp"
-        android:text="За допомогою магії ми віднайшли ідеальні варіанти для Вас"
+        android:text="@string/text_title_ve_take_ideal_variants"
         android:textAllCaps="true"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@id/guideline_vert_98"

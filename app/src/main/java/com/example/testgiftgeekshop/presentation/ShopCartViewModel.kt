@@ -5,6 +5,8 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.util.Log
+import android.view.View
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,7 +14,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.geekshopappbuy.domain.entitys.GeekProductUI
 import com.example.testgiftgeekshop.data.entity.ErrorInputModel
 import com.example.testgiftgeekshop.domain.entity.*
+import com.example.testgiftgeekshop.utils.Constances
 import com.example.testgiftgeekshop.utils.OrderStatusVrapper
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -24,6 +28,10 @@ import javax.inject.Inject
 class ShopCartViewModel @Inject constructor(
     private val application: Application
 ) : ViewModel() {
+
+    private var _finalTextToNusick = MutableLiveData<String>()
+    val finalTextToNusick: LiveData<String>
+        get() = _finalTextToNusick
 
     private val _orderStatusInput =
         MutableStateFlow<OrderStatusVrapper>(OrderStatusVrapper.InProcess)
@@ -159,26 +167,24 @@ class ShopCartViewModel @Inject constructor(
 //    }
 
     fun sendOrderToNusick(): Intent {
-
-        val text = "тут буде текст замовлення"
-        val number = "+380938858600"
-        val applicationpackage = "com.whatsapp"
+        val text = finalTextToNusick.value!!
+        val number = Constances.NUSICK_NUMBER
+        val apiWhatsapp = Constances.LINK_API_WHATSAPP
 
         if (checkIsWattsUppInstalled()) {
-            val intent = Intent(
+            return Intent(
                 Intent.ACTION_VIEW,
-                Uri.parse("https://api.whatsapp.com/send?phone=${number}&text=${text}")
+                Uri.parse("$apiWhatsapp${number}&text=${text}")
             )
-            return intent
         }
         throw RuntimeException("Встановіть, будь ласка, WattsUpp")
     }
 
     private fun checkIsWattsUppInstalled(): Boolean {
-        val applicationpackage = "com.whatsapp"
+        val applicationPackageName = "com.whatsapp"
         val packageManager = application.packageManager
         return try {
-            packageManager.getPackageInfo(applicationpackage, PackageManager.GET_ACTIVITIES)
+            packageManager.getPackageInfo(applicationPackageName, PackageManager.GET_ACTIVITIES)
             true
         } catch (e: PackageManager.NameNotFoundException) {
             false
@@ -295,9 +301,11 @@ class ShopCartViewModel @Inject constructor(
     }
 
     fun finalConfirmOrder(): String {
-        return "Привіт. \nЯ хочу зробити замовлення :)\n" +
-                getListNames() + "\n"+
+        val result =  "Привіт. \nЯ хочу зробити замовлення :)\n" +
+                getListNames() + "\n" +
                 "\n${_orderStatusInput.value.safeData.returnTextAboutDelivery()}."
+        _finalTextToNusick.value = result
+        return  result
     }
 
     fun restartTest() {

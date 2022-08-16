@@ -6,7 +6,7 @@ import javax.inject.Inject
 class SortByPrice @Inject constructor(
     private val repository: MainRepository
 ) {
-    suspend fun execute(maxPrice: Int) {
+    fun execute(maxPrice: Int) {
         repository.filterResultListByPrice(maxPrice)
     }
 }

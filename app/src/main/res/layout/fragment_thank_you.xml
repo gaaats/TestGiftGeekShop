@@ -225,6 +225,7 @@
 
     <ImageView
         android:id="@+id/img_thank_you"
+        android:visibility="invisible"
         style="@style/image_on_start_screen"
         android:src="@drawable/icon_done"
         app:layout_constraintBottom_toBottomOf="@id/guideline_hor_20"
@@ -235,13 +236,13 @@
     <TextView
         android:id="@+id/tv_thank_you"
         android:textColor="@color/black"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_width="0dp"
         android:fontFamily="@font/kaushan_script_regular"
-        android:lines="2"
+        android:lines="1"
         android:autoSizeTextType="uniform"
         android:gravity="center"
-        android:text="Thank You"
+        android:text="@string/thank_you_text"
         app:layout_constraintTop_toTopOf="@id/guideline_hor_20"
         app:layout_constraintBottom_toBottomOf="@id/guideline_hor_30"
         app:layout_constraintEnd_toEndOf="@id/guideline_vert_75_"
@@ -258,8 +259,8 @@
         android:text="@string/for_being_awesome_"
         app:layout_constraintTop_toBottomOf="@id/tv_thank_you"
         app:layout_constraintBottom_toBottomOf="@id/guideline_hor_35"
-        app:layout_constraintEnd_toEndOf="@id/guideline_vert_75_"
-        app:layout_constraintStart_toStartOf="@id/guideline_vert_25" />
+        app:layout_constraintEnd_toEndOf="@id/guideline_vert_80_"
+        app:layout_constraintStart_toStartOf="@id/guideline_vert_20" />
 
     <TextView
         android:id="@+id/tv_created_by"
@@ -272,23 +273,27 @@
         android:id="@+id/tv_managers_fighting"
         android:layout_height="0dp"
         android:layout_width="0dp"
-        android:fontFamily="@font/opensans_regular"
+        android:fontFamily="@font/jost_italic"
         android:lines="3"
         android:autoSizeTextType="uniform"
         android:gravity="center"
         android:text="@string/managers_fighting"
-        app:layout_constraintTop_toBottomOf="@id/guideline_hor_50"
-        app:layout_constraintBottom_toTopOf="@id/img_fighting"
+        app:layout_constraintTop_toBottomOf="@id/guideline_hor_45"
+        app:layout_constraintBottom_toTopOf="@id/guideline_hor_60"
         app:layout_constraintEnd_toEndOf="@id/guideline_vert_85"
         app:layout_constraintStart_toStartOf="@id/guideline_vert_15" />
 
-    <ImageView
-        android:id="@+id/img_fighting"
-        style="@style/image_on_start_screen"
-        android:src="@drawable/icon_fight"
-        app:layout_constraintBottom_toBottomOf="@id/guideline_hor_80"
-        app:layout_constraintEnd_toEndOf="@id/guideline_vert_70"
-        app:layout_constraintStart_toEndOf="@id/guideline_vert_30"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_empty_result_list"
+        android:layout_width="0dp"
+        android:src="@drawable/girl_ipone_thank_you"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1,1"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_hor_90"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vert_80_"
+        app:layout_constraintStart_toEndOf="@id/guideline_vert_20"
         app:layout_constraintTop_toTopOf="@id/guideline_hor_60" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

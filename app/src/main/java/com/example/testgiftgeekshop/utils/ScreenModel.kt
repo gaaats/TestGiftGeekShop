@@ -27,6 +27,15 @@ data class ScreenModel(
         return listActiveParams
     }
 
+    fun returnSingleActiveParams(): String? {
+        for (element in listAnswer) {
+            if (element.isActive) {
+                return element.title
+            }
+        }
+        return null
+    }
+
     fun checkAnsAndChangeState(text: String) {
         when (text) {
             ans1.title -> ans1.changeState()

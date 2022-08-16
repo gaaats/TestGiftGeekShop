@@ -52,8 +52,6 @@ class ResultFragment : Fragment() {
             binding.tvTotalSumCount.text = it.toString()
         }
 
-        startLoadingProgBar()
-        iniLoadListProducts()
         initAdapterRecViev()
         observeProductList()
         addVertAndHorDividers()
@@ -64,23 +62,25 @@ class ResultFragment : Fragment() {
 
         super.onViewCreated(view, savedInstanceState)
     }
+/*
+//    private fun startLoadingProgBar() {
+//        lifecycleScope.launch {
+//            binding.resScrnMainGroup.visibility = View.INVISIBLE
+//            binding.lottieAnimVaiting.visibility = View.VISIBLE
+//            binding.tvPleaseVaitLoading.visibility = View.VISIBLE
+//            delay(2000)
+//
+//            if (mainViewModel.listProducts.value?.data.isNullOrEmpty() || mainViewModel.listProducts.value?.data?.size == 0 || mainViewModel.listProducts.value == null) {
+//                findNavController().navigate(R.id.action_resultFragment_to_emptyResultFragment)
+//            }
+//
+//            binding.resScrnMainGroup.visibility = View.VISIBLE
+//            binding.lottieAnimVaiting.visibility = View.GONE
+//            binding.tvPleaseVaitLoading.visibility = View.GONE
+//        }
+//    }
 
-    private fun startLoadingProgBar() {
-        lifecycleScope.launch {
-            binding.resScrnMainGroup.visibility = View.INVISIBLE
-            binding.lottieAnimVaiting.visibility = View.VISIBLE
-            binding.tvPleaseVaitLoading.visibility = View.VISIBLE
-            delay(2000)
-
-            if (mainViewModel.listProducts.value?.data.isNullOrEmpty() || mainViewModel.listProducts.value?.data?.size == 0 || mainViewModel.listProducts.value == null) {
-                findNavController().navigate(R.id.action_resultFragment_to_emptyResultFragment)
-            }
-
-            binding.resScrnMainGroup.visibility = View.VISIBLE
-            binding.lottieAnimVaiting.visibility = View.GONE
-            binding.tvPleaseVaitLoading.visibility = View.GONE
-        }
-    }
+ */
 
     private fun setOnClickListenerRestartBtn() {
         binding.btnRestartTestAll.setOnClickListener {
@@ -105,22 +105,35 @@ class ResultFragment : Fragment() {
 
     private fun observeProductList() {
         mainViewModel.listProducts.observe(viewLifecycleOwner) {
-            Log.d("test_empty", "list is size is ${it.data?.size}")
-            if (it.data?.size == 0 || it.data.isNullOrEmpty()) {
+            when (it) {
+                is ResourceVrap.Loading -> {
+                    binding.resScrnMainGroup.visibility = View.INVISIBLE
+                    binding.lottieAnimVaiting.visibility = View.VISIBLE
+                    binding.tvPleaseVaitLoading.visibility = View.VISIBLE
+                }
+                is ResourceVrap.Success -> {
+                    checkListProductsisNullOrEmpty()
 
-                findNavController().navigate(R.id.action_resultFragment_to_emptyResultFragment)
-
-
-            } else {
-                productsAdapter.submitList(it.data)
+                    binding.resScrnMainGroup.visibility = View.VISIBLE
+                    binding.lottieAnimVaiting.visibility = View.GONE
+                    binding.tvPleaseVaitLoading.visibility = View.GONE
+                    productsAdapter.submitList(it.data)
+                }
+                is ResourceVrap.Error -> {
+                    navigateToEmptyResultFragment()
+                }
             }
         }
     }
 
-    private fun iniLoadListProducts() {
-//        lifecycleScope.launch {
-//            mainViewModel.loadList()
-//        }
+    private fun checkListProductsisNullOrEmpty() {
+        if (mainViewModel.listProducts.value?.data.isNullOrEmpty() || mainViewModel.listProducts.value?.data?.size == 0 || mainViewModel.listProducts.value == null) {
+            navigateToEmptyResultFragment()
+        }
+    }
+
+    private fun navigateToEmptyResultFragment() {
+        findNavController().navigate(R.id.action_resultFragment_to_emptyResultFragment)
     }
 
     private fun initAdapterRecViev() {

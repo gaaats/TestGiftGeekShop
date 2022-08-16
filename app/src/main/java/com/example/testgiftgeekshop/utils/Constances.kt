@@ -9,4 +9,6 @@ object Constances {
     const val ONLY_WITHOUT_GIFT_BOX: Int = 500
     const val ITEM_NOT_DISPLAY: String = "not_on_display"
     const val ITEM_NOT_AVAILABLE: String = "not_available"
+    const val NUSICK_NUMBER: String = "+380934496304"
+    const val LINK_API_WHATSAPP: String = "https://api.whatsapp.com/send?phone="
 }

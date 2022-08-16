@@ -8,7 +8,7 @@
     <string name="text_idea">у нас є ідея</string>
     <string name="go_to_fast_test">пройти тест ►►</string>
     <string name="loading">Loading...</string>
-    <string name="managers_fighting">Наші менеджери б\'ються за можливість відповісти вам. Бої триватимуть ще деякий час. Переможець відразу зв\'яжеться з Вами</string>
+    <string name="managers_fighting">А зараз Ви будете переадресовані на Whatsapp до нашого менеджера </string>
     <string name="for_being_awesome_">for being awesome, we hope you enjoy your purchase 🖤</string>
     <string name="question_1_for_me">Для себе</string>
     <string name="question_1_for_friend">Для друга / подруги</string>
@@ -24,11 +24,11 @@
     <string name="question_3_both_variants">Розгляну обидва варіанти</string>
     <string name="created_by_geekshop_ukaine">© Created by geekshop_ukaine</string>
     <string name="question_4_200">до 200 грн</string>
-    <string name="question_4_201_500">201 грн - 500 грн</string>
-    <string name="question_4_501_999">501 грн - 999 грн</string>
+    <string name="question_4_201_500">до 500 грн</string>
+    <string name="question_4_501_999">до 999 грн</string>
     <string name="question_4_1000">1000+ грн</string>
     <string name="confirm_btn">confirm</string>
-    <string name="go_to_site"><u>Сформувати замолвення самостійно на нашому сайті</u></string>
+    <string name="go_to_site"><u>Сформувати замовлення самостійно на нашому сайті</u></string>
     <string name="start_test_again">↓↓ пройти тест ще раз ↓↓</string>
     <string name="add_quest_marvel_dc">* Для Marvel / dc У НАС Є ДОДАТКОВЕ ЗАПИТАННЯ?</string>
     <string name="add_question_superman">superman</string>
@@ -49,9 +49,16 @@
     <string name="additional_info">Додаткова інформація</string>
     <string name="ukrposhta_name">Укрпошта</string>
     <string name="nova_poshta_name">Нова пошта</string>
-    <string name="go_to_choose_delivery">перейти до доставки</string>
+    <string name="go_to_choose_delivery">перейти до оформлення</string>
     <string name="other_important_info_text">Інша важлива інформація</string>
-    <string name="text_looks_like_error_or_emorty_list">Схоже сталася помилка... \n або ж за Вашими критеріями ми не знайшли жодного варіанту...</string>
+    <string name="text_looks_like_error_or_emorty_list">Схоже сталася помилка...\n перевірте підключення до інтернету \n або ж за Вашими критеріями ми не знайшли жодного варіанту...</string>
+    <string name="thank_you_text">Thank You</string>
+    <string name="text_samovivoz"><u>самовивіз</u></string>
+    <string name="text_city_village">Місто/селище/смт/село</string>
+    <string name="text_title_ve_take_ideal_variants">За допомогою магії ми підібрали ідеальні варіанти для Вас</string>
+    <string name="text_add_to_shop_cart">додати до кошика</string>
+    <string name="text_dep_delivery_number">Номер відділення</string>
+    <string name="text_title_ask_budget">На який бюджет розраховуєте?</string>
 
 
     <string-array name="ukraine_regions">
@@ -80,6 +87,24 @@
         <item>Черкаська область</item>
         <item>Чернівецька область</item>
         <item>Чернігівська область</item>
+    </string-array>
+
+    <string-array name="nova_poshta_payments_var">
+        <item>повна оплата на карту</item>
+        <item>повна оплата на рахунок ФОП</item>
+        <item>100 грн передплати, решта наложка</item>
+        <item>оплата при отриманні</item>
+    </string-array>
+
+    <string-array name="ukrposhta_payments_var">
+        <item>повна оплата на карту</item>
+        <item>повна оплата на рахунок ФОП</item>
+    </string-array>
+
+    <string-array name="samovivoz_payments_var">
+        <item>повна оплата на карту</item>
+        <item>повна оплата на реєстраційний рахунок ФОП</item>
+        <item>оплата при отриманні</item>
     </string-array>
 
 
