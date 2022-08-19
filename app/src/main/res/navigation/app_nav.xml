@@ -148,6 +148,10 @@
         tools:layout="@layout/fragment_complete_order" >
         <action
             android:id="@+id/action_completeOrderFragment_to_thankYouFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"
             app:destination="@id/thankYouFragment" />
     </fragment>
     <fragment
@@ -204,8 +208,8 @@
         android:label="fragment_shop_cart"
         tools:layout="@layout/fragment_shop_cart" >
         <action
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right"
             android:id="@+id/action_shopCartFragment_to_completeOrderFragment"

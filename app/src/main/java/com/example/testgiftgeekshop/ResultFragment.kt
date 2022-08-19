@@ -62,25 +62,6 @@ class ResultFragment : Fragment() {
 
         super.onViewCreated(view, savedInstanceState)
     }
-/*
-//    private fun startLoadingProgBar() {
-//        lifecycleScope.launch {
-//            binding.resScrnMainGroup.visibility = View.INVISIBLE
-//            binding.lottieAnimVaiting.visibility = View.VISIBLE
-//            binding.tvPleaseVaitLoading.visibility = View.VISIBLE
-//            delay(2000)
-//
-//            if (mainViewModel.listProducts.value?.data.isNullOrEmpty() || mainViewModel.listProducts.value?.data?.size == 0 || mainViewModel.listProducts.value == null) {
-//                findNavController().navigate(R.id.action_resultFragment_to_emptyResultFragment)
-//            }
-//
-//            binding.resScrnMainGroup.visibility = View.VISIBLE
-//            binding.lottieAnimVaiting.visibility = View.GONE
-//            binding.tvPleaseVaitLoading.visibility = View.GONE
-//        }
-//    }
-
- */
 
     private fun setOnClickListenerRestartBtn() {
         binding.btnRestartTestAll.setOnClickListener {
@@ -139,8 +120,6 @@ class ResultFragment : Fragment() {
     private fun initAdapterRecViev() {
         binding.recyclerView.adapter = productsAdapter
         productsAdapter.setOnItemClickListener {
-            //done
-            Snackbar.make(binding.root, "You pressed: $it element", Snackbar.LENGTH_SHORT).show()
             lifecycleScope.launch {
                 mainViewModel.loadPressedSingleProduct(it)
             }

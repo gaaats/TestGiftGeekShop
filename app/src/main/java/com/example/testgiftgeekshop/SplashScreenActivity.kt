@@ -44,6 +44,6 @@ class SplashScreenActivity : AppCompatActivity() {
     }
 
     companion object{
-        private const val SPLASH_SCREEN_TIME: Long = 1000
+        private const val SPLASH_SCREEN_TIME: Long = 1500
     }
 }

@@ -51,21 +51,6 @@ class Question1Fragment : Fragment() {
             initBtnConfirmObserve(it)
         }
         initOnBtnAnsPressed()
-
-
-        //for future
-//        mainViewModel.statusMessage.observe(viewLifecycleOwner) {
-//            it.getContentIfNotHandled()?.let { text ->
-//                Snackbar.make(binding.root, text, Snackbar.LENGTH_SHORT).show()
-//            }
-//        }
-//        binding.btnConfirm.setOnClickListener {
-//            mainViewModel.pressedBtnConfirm()
-//        }
-//        mainViewModel.navigateToNextScreen.observe(viewLifecycleOwner){
-//            navigateToNextQuestion()
-//        }
-
         super.onViewCreated(view, savedInstanceState)
     }
 
@@ -73,15 +58,6 @@ class Question1Fragment : Fragment() {
         _binding = null
         super.onDestroy()
     }
-
-
-//    private fun initCheckBoxCustom(imgView: ImageView, isActive: Boolean) {
-//        if (isActive) {
-//            imgView.setImageResource(R.drawable.icon_point_on)
-//            return
-//        }
-//        imgView.setImageResource(R.drawable.icon_point_off)
-//    }
 
     private fun initOnBtnAnsPressed() {
         binding.tvQuestAns1.setOnClickListener {

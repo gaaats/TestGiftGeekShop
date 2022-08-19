@@ -180,7 +180,7 @@ class ShopCartViewModel @Inject constructor(
         throw RuntimeException("Встановіть, будь ласка, WattsUpp")
     }
 
-    private fun checkIsWattsUppInstalled(): Boolean {
+    fun checkIsWattsUppInstalled(): Boolean {
         val applicationPackageName = "com.whatsapp"
         val packageManager = application.packageManager
         return try {

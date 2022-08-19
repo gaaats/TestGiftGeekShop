@@ -122,10 +122,6 @@ class ShopCartFragment : Fragment() {
                 btnConfirmOrder.alpha = 1f
                 btnConfirmOrder.setOnClickListener {
 
-                    // test viber
-//                    startActivity(testViberSend())
-
-                    // it is here
                     navigateToNextQuestion()
                 }
                 return
@@ -148,36 +144,4 @@ class ShopCartFragment : Fragment() {
     private fun navigateToNextQuestion() {
         findNavController().navigate(R.id.action_shopCartFragment_to_completeOrderFragment)
     }
-
-    fun testViberSend(): Intent {
-
-        val text = "rtgtgttgt"
-        val number = "+380930545607"
-
-        val applicationpackage = "com.viber.voip"
-
-        val i = Intent(Intent.ACTION_SEND)
-        i.type = "text/plain"
-        i.putExtra(Intent.EXTRA_TEXT, text)
-        return if (applicationpackage === "choose") {
-            Intent.createChooser(i, "Share using")
-        } else {
-            i.setPackage(applicationpackage)
-            i
-        }
-    }
-
-//    private fun initAlertDialog() {
-//        AlertDialog.Builder(requireContext())
-//            .setTitle("Видалення з корзинки")
-//            .setMessage("Ви точно хочете даний товар з Вашої корзинки?")
-//            .setPositiveButton("Restart") { _, _ ->
-//                findNavController().navigate(R.id.action_resultFragment_to_startFragment)
-//            }
-//            .setNegativeButton("Deny") { _, _ ->
-//            }
-//            .setCancelable(true)
-//            .create()
-//            .show()
-//    }
 }
