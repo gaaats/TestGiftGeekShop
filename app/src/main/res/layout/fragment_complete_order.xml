@@ -252,7 +252,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.70" />
+            app:layout_constraintGuide_begin="288dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_vert_95"
@@ -327,42 +327,43 @@
             style="@style/image_number"
             android:src="@drawable/icon_number_one"
             app:layout_constraintStart_toEndOf="@id/guideline_vert_10"
-            app:layout_constraintTop_toTopOf="@id/guideline_hor_03" />
+            app:layout_constraintTop_toTopOf="@id/tv_number_one_text" />
+
 
         <TextView
             android:id="@+id/tv_number_one_text"
             style="@style/text_number"
             android:text="@string/text_take_delivery"
-            app:layout_constraintBottom_toBottomOf="@id/img_number_one"
+            app:layout_constraintVertical_chainStyle="spread_inside"
+            app:layout_constraintBottom_toTopOf="@id/spinner_delivery_company"
             app:layout_constraintStart_toStartOf="@id/guideline_vert_20"
-            app:layout_constraintTop_toTopOf="@id/img_number_one" />
-
+            app:layout_constraintTop_toTopOf="@id/guideline_hor_03" />
 
         <Spinner
             android:id="@+id/spinner_delivery_company"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/tv_number_one_text"
             app:layout_constraintEnd_toEndOf="@id/guideline_vert_80_"
-            app:layout_constraintStart_toStartOf="@id/guideline_vert_20"
-            app:layout_constraintTop_toBottomOf="@id/tv_number_one_text" />
+            app:layout_constraintBottom_toTopOf="@id/tv_number_tvo_text"
+            app:layout_constraintStart_toStartOf="@id/guideline_vert_20" />
 
 
         <ImageView
             android:id="@+id/img_number_tvo"
             style="@style/image_number"
-            android:layout_marginTop="8dp"
             android:src="@drawable/icon_number_2"
             app:layout_constraintStart_toEndOf="@id/guideline_vert_10"
-            app:layout_constraintTop_toBottomOf="@id/guideline_hor_12" />
+            app:layout_constraintTop_toTopOf="@id/tv_number_tvo_text" />
 
         <TextView
             android:id="@+id/tv_number_tvo_text"
             style="@style/text_number"
             android:text="@string/delivery_person_data"
-            app:layout_constraintBottom_toBottomOf="@id/img_number_tvo"
+            app:layout_constraintBottom_toTopOf="@id/textInLayFirstName"
             app:layout_constraintStart_toStartOf="@id/guideline_vert_20"
-            app:layout_constraintTop_toTopOf="@id/img_number_tvo" />
+            app:layout_constraintTop_toBottomOf="@id/spinner_delivery_company" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInLayFirstName"
@@ -371,7 +372,8 @@
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="@id/guideline_vert_90"
             app:layout_constraintStart_toStartOf="@id/guideline_vert_20"
-            app:layout_constraintTop_toTopOf="@id/guideline_hor_20">
+            app:layout_constraintBottom_toTopOf="@id/textInLaySecondName"
+            app:layout_constraintTop_toBottomOf="@id/tv_number_tvo_text">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textInputFirstName"
@@ -392,7 +394,8 @@
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="@id/guideline_vert_90"
             app:layout_constraintStart_toStartOf="@id/guideline_vert_20"
-            app:layout_constraintTop_toTopOf="@id/guideline_hor_30">
+            app:layout_constraintBottom_toTopOf="@id/textInLayPhoneNumber"
+            app:layout_constraintTop_toBottomOf="@id/textInLayFirstName">
 
 
             <com.google.android.material.textfield.TextInputEditText
@@ -413,7 +416,8 @@
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="@id/guideline_vert_90"
             app:layout_constraintStart_toStartOf="@id/guideline_vert_20"
-            app:layout_constraintTop_toTopOf="@id/guideline_hor_40">
+            app:layout_constraintBottom_toTopOf="@id/tv_number_tvo_three"
+            app:layout_constraintTop_toBottomOf="@id/textInLaySecondName">
 
 
             <com.google.android.material.textfield.TextInputEditText
@@ -433,15 +437,15 @@
             style="@style/image_number"
             android:src="@drawable/icon_number_3"
             app:layout_constraintStart_toEndOf="@id/guideline_vert_10"
-            app:layout_constraintTop_toBottomOf="@id/textInLayPhoneNumber" />
+            app:layout_constraintTop_toTopOf="@id/tv_number_tvo_three" />
 
         <TextView
             android:id="@+id/tv_number_tvo_three"
             style="@style/text_number"
             android:text="@string/text_delivery_data"
-            app:layout_constraintBottom_toBottomOf="@id/img_number_three"
             app:layout_constraintStart_toStartOf="@id/guideline_vert_20"
-            app:layout_constraintTop_toTopOf="@id/img_number_three" />
+            app:layout_constraintBottom_toTopOf="@id/spinner_ukraine_regions"
+            app:layout_constraintTop_toBottomOf="@id/textInLayPhoneNumber" />
 
         <Spinner
             android:id="@+id/spinner_ukraine_regions"
@@ -452,6 +456,7 @@
             android:gravity="center"
             app:layout_constraintEnd_toEndOf="@id/guideline_vert_80_"
             app:layout_constraintStart_toStartOf="@id/guideline_vert_20"
+            app:layout_constraintBottom_toTopOf="@id/textInLayCity"
             app:layout_constraintTop_toBottomOf="@id/tv_number_tvo_three" />
 
 
@@ -462,7 +467,9 @@
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="@id/guideline_vert_90"
             app:layout_constraintStart_toStartOf="@id/guideline_vert_20"
-            app:layout_constraintTop_toTopOf="@id/guideline_hor_57">
+            app:layout_constraintBottom_toTopOf="@id/textInLayDeliveryDepNumber"
+            app:layout_constraintTop_toBottomOf="@id/spinner_ukraine_regions"
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textInputCity"
@@ -481,7 +488,8 @@
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="@id/guideline_vert_90"
             app:layout_constraintStart_toStartOf="@id/guideline_vert_20"
-            app:layout_constraintTop_toTopOf="@id/guideline_hor_67">
+            app:layout_constraintBottom_toTopOf="@id/tv_number_four_text"
+            app:layout_constraintTop_toBottomOf="@id/textInLayCity">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textInputDeliveryDepNumber"
@@ -499,15 +507,15 @@
             style="@style/image_number"
             android:src="@drawable/icon_number_four"
             app:layout_constraintStart_toEndOf="@id/guideline_vert_10"
-            app:layout_constraintTop_toBottomOf="@id/guideline_hor_77" />
+            app:layout_constraintTop_toTopOf="@id/tv_number_four_text" />
 
         <TextView
             android:id="@+id/tv_number_four_text"
             style="@style/text_number"
             android:text="Оплата"
-            app:layout_constraintBottom_toBottomOf="@id/img_number_four"
-            app:layout_constraintStart_toStartOf="@id/guideline_vert_20"
-            app:layout_constraintTop_toTopOf="@id/img_number_four" />
+            app:layout_constraintBottom_toTopOf="@id/spinner_payment_var"
+            app:layout_constraintTop_toBottomOf="@id/textInLayDeliveryDepNumber"
+            app:layout_constraintStart_toStartOf="@id/guideline_vert_20" />
 
         <Spinner
             android:id="@+id/spinner_payment_var"
@@ -517,12 +525,13 @@
             android:gravity="center"
             app:layout_constraintEnd_toEndOf="@id/guideline_vert_80_"
             app:layout_constraintStart_toStartOf="@id/guideline_vert_20"
-            app:layout_constraintTop_toTopOf="@id/guideline_hor_82" />
+            app:layout_constraintBottom_toTopOf="@id/btn_confirm_delivery_and_total"
+            app:layout_constraintTop_toBottomOf="@id/tv_number_four_text" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_confirm_delivery_and_total"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="12dp"
@@ -539,7 +548,7 @@
             app:layout_constraintBottom_toBottomOf="@id/guideline_hor_96"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/guideline_hor_88" />
+            app:layout_constraintTop_toBottomOf="@id/spinner_payment_var" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottie_anim_question_samovivoz"

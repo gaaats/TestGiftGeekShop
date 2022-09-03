@@ -47,7 +47,7 @@ class ResultFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         shopCartViewModel.totalSum.observe(viewLifecycleOwner) {
-            binding.tvTotalSumCount.text = it.toString()
+            binding.tvTotalSumCount.text = "$it ₴"
         }
 
         initAdapterRecViev()
