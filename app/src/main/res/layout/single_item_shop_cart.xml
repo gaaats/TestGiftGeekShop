@@ -104,7 +104,7 @@
         android:lines="1"
         android:maxLines="1"
         android:textColor="@color/grey"
-        android:textSize="16sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/card_v_image"
@@ -148,7 +148,7 @@
             style="@style/tv_price_count_shop_cart"
             android:layout_weight="1"
             android:id="@+id/tv_item_count"
-            android:textSize="14sp"
+            android:textSize="13sp"
             android:textStyle="bold"
             tools:text="2" />
 
@@ -176,7 +176,7 @@
             android:layout_weight="1"
             android:id="@+id/tv_item_sum"
             android:textStyle="bold"
-            android:textSize="14sp"
+            android:textSize="13sp"
             android:text="2000"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/startFragment"
-        android:name="com.example.testgiftgeekshop.StartFragment"
+        android:name="com.geekshop.testgiftgeekshop.StartFragment"
         android:label="fragment_start"
         tools:layout="@layout/fragment_start" >
         <action
@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/question1Fragment"
-        android:name="com.example.testgiftgeekshop.Question1Fragment"
+        android:name="com.geekshop.testgiftgeekshop.Question1Fragment"
         android:label="fragment_question1"
         tools:layout="@layout/fragment_question1" >
         <action
@@ -42,7 +42,7 @@
     </fragment>
     <fragment
         android:id="@+id/question2Fragment"
-        android:name="com.example.testgiftgeekshop.Question2Fragment"
+        android:name="com.geekshop.testgiftgeekshop.Question2Fragment"
         android:label="fragment_question2"
         tools:layout="@layout/fragment_question2" >
         <action
@@ -67,7 +67,7 @@
     </fragment>
     <fragment
         android:id="@+id/question3Fragment"
-        android:name="com.example.testgiftgeekshop.Question3Fragment"
+        android:name="com.geekshop.testgiftgeekshop.Question3Fragment"
         android:label="fragment_question3"
         tools:layout="@layout/fragment_question3" >
         <action
@@ -85,7 +85,7 @@
     </fragment>
     <fragment
         android:id="@+id/question4Fragment"
-        android:name="com.example.testgiftgeekshop.Question4Fragment"
+        android:name="com.geekshop.testgiftgeekshop.Question4Fragment"
         android:label="fragment_question4"
         tools:layout="@layout/fragment_question4" >
         <action
@@ -104,12 +104,12 @@
     </fragment>
     <fragment
         android:id="@+id/thankYouFragment"
-        android:name="com.example.testgiftgeekshop.ThankYouFragment"
+        android:name="com.geekshop.testgiftgeekshop.ThankYouFragment"
         android:label="fragment_thank_you"
         tools:layout="@layout/fragment_thank_you" />
     <fragment
         android:id="@+id/resultFragment"
-        android:name="com.example.testgiftgeekshop.ResultFragment"
+        android:name="com.geekshop.testgiftgeekshop.ResultFragment"
         android:label="fragment_result"
         tools:layout="@layout/fragment_result" >
         <action
@@ -143,7 +143,7 @@
     </fragment>
     <fragment
         android:id="@+id/completeOrderFragment"
-        android:name="com.example.testgiftgeekshop.CompleteOrderFragment"
+        android:name="com.geekshop.testgiftgeekshop.CompleteOrderFragment"
         android:label="fragment_complete_order"
         tools:layout="@layout/fragment_complete_order" >
         <action
@@ -156,7 +156,7 @@
     </fragment>
     <fragment
         android:id="@+id/splashInstructionFragment"
-        android:name="com.example.testgiftgeekshop.SplashInstructionFragment"
+        android:name="com.geekshop.testgiftgeekshop.SplashInstructionFragment"
         android:label="fragment_splash_instruction"
         tools:layout="@layout/fragment_splash_instruction" >
         <action
@@ -171,7 +171,7 @@
     </fragment>
     <fragment
         android:id="@+id/externalMarvelDcQuestionFragment"
-        android:name="com.example.testgiftgeekshop.ExternalMarvelDcQuestionFragment"
+        android:name="com.geekshop.testgiftgeekshop.ExternalMarvelDcQuestionFragment"
         android:label="fragment_external_marvel_dc_question"
         tools:layout="@layout/fragment_external_marvel_dc_question" >
         <action
@@ -189,7 +189,7 @@
     </fragment>
     <fragment
         android:id="@+id/productDetailsFragment"
-        android:name="com.example.testgiftgeekshop.ProductDetailsFragment"
+        android:name="com.geekshop.testgiftgeekshop.ProductDetailsFragment"
         android:label="fragment_product_details"
         tools:layout="@layout/fragment_product_details" >
         <action
@@ -204,7 +204,7 @@
     </fragment>
     <fragment
         android:id="@+id/shopCartFragment"
-        android:name="com.example.testgiftgeekshop.ShopCartFragment"
+        android:name="com.geekshop.testgiftgeekshop.ShopCartFragment"
         android:label="fragment_shop_cart"
         tools:layout="@layout/fragment_shop_cart" >
         <action
@@ -217,7 +217,7 @@
     </fragment>
     <fragment
         android:id="@+id/emptyResultFragment"
-        android:name="com.example.testgiftgeekshop.EmptyResultFragment"
+        android:name="com.geekshop.testgiftgeekshop.EmptyResultFragment"
         android:label="fragment_empty_result"
         tools:layout="@layout/fragment_empty_result" >
         <action
