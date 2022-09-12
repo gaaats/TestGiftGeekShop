@@ -78,14 +78,13 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_price"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/opensans_extra_bold"
         android:gravity="bottom"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@id/btn_add_to_shop_cart"
-        app:layout_constraintEnd_toEndOf="@id/guideline_vert_50"
         app:layout_constraintStart_toStartOf="@id/card_v_image"
         app:layout_constraintTop_toTopOf="@id/btn_add_to_shop_cart"
         tools:text="250 ₴" />
@@ -94,7 +93,7 @@
         android:id="@+id/btn_add_to_shop_cart"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="3dp"
+        android:layout_margin="5dp"
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
         android:src="@drawable/icon_add_to_basket"
